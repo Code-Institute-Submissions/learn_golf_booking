@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from models import Booking
+from .models import Booking
 
 # Create your views here.
+
+def book_lessons(request):
+    return render(request, '')
 
 def booking_create(request):
     if request.method == "POST":

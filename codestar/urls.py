@@ -19,6 +19,6 @@ from django.urls import path, include
 from lessons import views as lessons_views
 
 urlpatterns = [ 
-    path("", lessons_views.book_lessons, name='lessons'),
+    path('lessons/', include('lessons.urls')),
     path('admin/', admin.site.urls),
 ]

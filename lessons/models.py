@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Booking(Base):
+class Booking(models.Model):
     __tablename__ = 'bookings'
 
     id = Column(Integer, primary_key=True, autoincrement=True)

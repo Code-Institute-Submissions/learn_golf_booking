@@ -25,7 +25,7 @@ def booking_create(request):
             return redirect('booking_detail', booking_id=booking.id)
     else:
         form = BookingForm()
-    return render(request, '', {'form': form})
+    return render(request, 'book_lessons.html', {'form': form})
 
 def booking_update(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)

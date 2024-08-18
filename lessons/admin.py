@@ -7,4 +7,4 @@ from .models import Booking
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('customer_name', 'booking_date', 'booking_time')
+    list_display = ('name', 'date', 'time')

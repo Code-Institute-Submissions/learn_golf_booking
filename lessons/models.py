@@ -3,9 +3,11 @@ from django.db import models
 # Create your models here.
 
 class Booking(models.Model):
-    customer_name = models.CharField(max_length=50)
-    booking_date = models.DateField()
-    booking_time = models.TimeField()
+    name = models.CharField(max_length=100, default='Default Name')
+    email = models.EmailField(default='example@example.com')
+    phone = models.CharField(max_length=15, default='00000000000')
+    date = models.DateField()
+    time = models.TimeField()
 
     def __str__(self):
-        return f"Booking {self.id} by {self.customer_name} on {self.booking_date} at {self.booking_time}"
+        return f"{self.name} - {self.date} at {self.time}"

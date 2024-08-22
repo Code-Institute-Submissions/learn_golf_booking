@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
@@ -21,7 +23,29 @@
             </ul>
         </nav>
     </header>
-    <h1>Booking Successful</h1>
-    <p>Thank you! Your booking has been successfully processed, we will contact you shortly.</p>
+    <h1 class="success">Booking Successful</h1>
+    <h3>Thank you!</h3>
+    <p class="confirm">Your booking has been successfully processed, we will contact you shortly.</p>
+    <footer>
+        <ul id="socials">
+            <li>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our facebook page(opens in new tab)"><i class="fa-brands fa-facebook-f"></i></a>
+            </li>
+            <li>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our twitter page(opens in a new tab)"> <i class="fa-brands fa-x-twitter"></i></a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our YouTube channel(opens in a new tab)"><i class="fa-brands fa-youtube"></i></a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our Instagram page(opens in a new tab)"><i class="fa-brands fa-instagram"></i></a>
+            </li>
+        </ul>
+    </footer>
+    <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
 </body>
 </html>

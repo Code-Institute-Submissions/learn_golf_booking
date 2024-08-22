@@ -7,6 +7,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     margin: 0;
+    min-height: 100vh;
 }
 
 .container {
@@ -20,13 +21,15 @@ body {
 
 h1 {
     color: #f4f4f4;
+
 }
 
 form {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 0 8px;
+    margin: 120px 8px;
+    padding-top: 120px;
 }
 
 .form-group {
@@ -40,7 +43,7 @@ label {
 }
 
 input, select {
-    width: 100%;
+    width: 40vw;
     padding: 8px;
     box-sizing: border-box;
     border: 1px solid #ddd;
@@ -48,17 +51,20 @@ input, select {
 }
 
 button {
-    padding: 10px 15px;
+    padding: 15px 15px;
     background-color: olivedrab;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    width: 20vw;
+    margin-top: 30px;
+    margin-left: 180px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: darkolivegreen;
 }
 
 .error {
@@ -66,7 +72,39 @@ button:hover {
     margin-top: 10px;
 }
 
+.success {
+    color: black;
+    padding-top: 500px;
+    margin: 0 20px;
+    text-align: center;
+}
 
+h3 {
+    margin: 20px 20px;
+    text-align: center;
+}
+
+.confirm {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0 8px;
+    text-align: center;
+}
+p {
+    max-width: 400px;
+    align-self: flex-start;
+    margin-left: 60px;
+    color: #f4f4f4;
+    margin-top: 40px;
+}
+
+#booking-picture {
+    background-image: url(../images/book.jpg.jpg);
+    background-size: cover;
+    background-position: 70%;
+    flex-grow: 1;
+}
 /* Header */
 
 header {
@@ -138,7 +176,6 @@ footer {
 
 h2 {
     margin: 0 8px;
-    padding-top: 100px;
 }
 .active{
     border-bottom: 1px solid #ffffff;

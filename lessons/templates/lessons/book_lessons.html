@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     <header>
         <a href="book_lessons.html">
@@ -16,41 +18,48 @@
         <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
         <nav>
             <ul id="menu">
-                <li><a href="" >Home</a></li>
+                <li><a href="">Home</a></li>
                 <li><a href="">Gallery</a></li>
                 <li><a href="">Golf Careers</a></li>
                 <li><a href="book_lessons.html" class="active">Golf Lessons</a></li>
+                <li><a href="login.html">Login</a></li>
             </ul>
         </nav>
     </header>
+    <main id="booking-picture">
+        <h2>Booking Form</h2>
 
-    <h2>Booking Form</h2>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit Booking</button>
-    </form>
-    <footer>
-        <ul id="socials">
-            <li>
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our facebook page(opens in new tab)"><i class="fa-brands fa-facebook-f"></i></a>
-            </li>
-            <li>
-                <a href="https://twitter.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our twitter page(opens in a new tab)"> <i class="fa-brands fa-x-twitter"></i></a>
-            </li>
-            <li>
-                <a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our YouTube channel(opens in a new tab)"><i class="fa-brands fa-youtube"></i></a>
-            </li>
-            <li>
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Instagram page(opens in a new tab)"><i class="fa-brands fa-instagram"></i></a>
-            </li>
-        </ul>
-    </footer>
-    <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Booking</button>
+        </form>
+        <footer>
+            <ul id="socials">
+                <li>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                        aria-label="Visit our facebook page(opens in new tab)"><i
+                            class="fa-brands fa-facebook-f"></i></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/" target="_blank" rel="noopener"
+                        aria-label="Visit our twitter page(opens in a new tab)"> <i
+                            class="fa-brands fa-x-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/" target="_blank" rel="noopener"
+                        aria-label="Visit our YouTube channel(opens in a new tab)"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                        aria-label="Visit our Instagram page(opens in a new tab)"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </li>
+            </ul>
+        </footer>
+        <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
+    </main>
 </body>
+
 </html>

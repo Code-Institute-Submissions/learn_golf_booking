@@ -110,7 +110,6 @@ p {
 header {
     background-color: olivedrab;
     padding: 0 1rem;
-    position: fixed;
     z-index: 99;
     width: 100%;
     box-shadow: 0 2px 2px white;
@@ -132,9 +131,6 @@ nav {
     box-shadow: 0 2px 2px #3a3a3a;
     display: none;
     top: 100%;
-}
-a {
-    margin: 0 6px ;
 }
 ul {
     margin: 0;
@@ -164,6 +160,7 @@ ul {
     display: flex;
     justify-content: space-evenly;
     list-style-type: none;
+    margin-top: 95vh;
 }
 #socials i {
     font-size: 160%;

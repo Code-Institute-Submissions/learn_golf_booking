@@ -1,7 +1,6 @@
 header {
     background-color: olivedrab;
     padding: 0 1rem;
-    position: fixed;
     z-index: 99;
     width: 100%;
     box-shadow: 0 2px 2px white;
@@ -71,4 +70,13 @@ body {
 
 .register-container form button:hover {
     background-color: #45a049;
+}
+
+.user {
+    margin: 0;
+    padding: 0;
+}
+
+#account {
+    
 }

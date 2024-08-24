@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'kanit', sans-serif;
     padding: 0;
     background-color: #f4f4f4;
     margin: 0;
     min-height: 100vh;
+    font-size: large;
 }
 
 .container {
@@ -19,16 +22,11 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #f4f4f4;
-
-}
-
 form {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 120px 8px;
+    margin: 100px 8px;
     padding-top: 120px;
 }
 
@@ -43,11 +41,24 @@ label {
 }
 
 input, select {
-    width: 40vw;
-    padding: 8px;
+    width: 30vw;
+    padding: 6px;
+    margin-top: 6px;
     box-sizing: border-box;
     border: 1px solid #ddd;
+    border-width: 3px;
     border-radius: 4px;
+    height: 40px;
+    font-size: large;
+    background: transparent;
+    color: white;
+}
+
+.register-account {
+    color:olivedrab;
+    align-self: center;
+    padding: 0;
+    margin: 30px 0;
 }
 
 button {
@@ -58,13 +69,38 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    width: 20vw;
-    margin-top: 30px;
-    margin-left: 180px;
+    margin-top: 50px;
+    width: 30vw;
+    align-self: center;
 }
 
 button:hover {
     background-color: darkolivegreen;
+}
+#submit-booking {
+    padding: 15px 15px;
+    background-color: olivedrab;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 50px;
+    margin-left: 140px;
+    width: 30vw;
+    align-self: start;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li{
+    padding-right: 20px;
+}
+
+a {
+    color: white;
 }
 
 .error {
@@ -105,8 +141,28 @@ p {
     background-position: 70%;
     flex-grow: 1;
 }
+/* Accounts */
+
+h1 {
+    color: olivedrab;
+}
+.details {
+    text-align: center;
+}
+label {
+    margin: 20px;
+}
+
+#login {
+    text-align: center;
+    margin-top: 120px;
+    text-transform: uppercase;
+}
 /* Header */
 
+#logo {
+    color: white
+}
 header {
     background-color: olivedrab;
     padding: 0 1rem;
@@ -120,6 +176,7 @@ header {
 header a {
     text-decoration: none;
     color: inherit;
+    margin-right: 6px;
 }
 
 nav {
@@ -146,7 +203,7 @@ ul {
 }
 #menu {
     font-size: 110%;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     list-style-type: none; 
     color: #ffffff;
     display: inline-flex;
@@ -154,6 +211,12 @@ ul {
 #menu > li {
     margin-bottom: 1em;
 }
+.active{
+    border-bottom: 1px solid #ffffff;
+}
+
+/* Footer */
+
 #socials {
     text-align: center;
     padding: 20px 0;
@@ -173,9 +236,6 @@ footer {
 
 h2 {
     margin: 0 8px;
-}
-.active{
-    border-bottom: 1px solid #ffffff;
 }
 @media screen and (min-width: 1200px) {
     nav {

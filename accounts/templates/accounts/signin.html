@@ -9,27 +9,35 @@
 </head>
 <body>
     <header>
-        <a href="book_lessons.html">
+        <a href="{% url 'book_lessons' %}">
             <h1 id="logo">Learn Golf <i class="fa-solid fa-golf-ball-tee"></i></h1>
         </a>
         <input type="checkbox" id="nav-toggle" name="nav-toggle">
         <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
         <nav>
             <ul id="menu">
-                <li><a href="" >Home</a></li>
-                <li><a href="">Gallery</a></li>
-                <li><a href="">Golf Careers</a></li>
-                <li><a href="book_lessons.html">Golf Lessons</a></li>
-                <li><a href="login.html" class="active">Login</a></li>
+                <li>Home</li>
+                <li>Gallery</li>
+                <li>Golf Careers</li>
+                <li><a href="{% url 'book_lessons' %}" class="active">Golf Lessons</a></li>
             </ul>
         </nav>
     </header>
     <div class="login-container">
-        <h2>Login</h2>
-        <form method="post">
+        <h1 id="login">Login</h1>
+        <form method="post" action="{% url 'login' %}" class="details">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>
+            {{ form.non_field_errors }}
+            <div>
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+                {{ form.username }}
+            </div>
+            <div>
+                <label for="{{ form.password.id_for_label }}">Password:</label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="details">Login</button>
+            <p class="register-account">Dont have an account?<a href="{% url 'register' %}" class="register-account">   Register here</a></p>
         </form>
     </div>
     <footer>

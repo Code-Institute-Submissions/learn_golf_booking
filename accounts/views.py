@@ -1,20 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .forms import SignUpForm, LoginForm
 
 def signin(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
             login(request, user)
-            return redirect('booking:booking_home')
-        else:
-            return render(request, 'accounts/login.html', {'error': 'Invalid username or password'})
+            return redirect('book_lessons')
     else:
-        return render(request, 'accounts/login.html')
+        form = LoginForm()
+    return render(request, 'accounts/signin.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
@@ -29,4 +27,4 @@ def register(request):
 
 def signout(request):
     logout(request)
-    return redirect('login') 
+    return redirect('login')

@@ -16,12 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from lessons import views 
 
-urlpatterns = [ 
-    path('lessons/', include('lessons.urls')),
+urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.book_lessons, name='book_lessons'),
     path('accounts/', include('accounts.urls')),
+    path('lessons/', include('lessons.urls')),
 ]
-                            

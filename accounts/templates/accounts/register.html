@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     <header>
         <a href="book_lessons.html">
@@ -16,17 +18,16 @@
         <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
         <nav>
             <ul id="menu">
-                <li><a href="" >Home</a></li>
-                <li><a href="">Gallery</a></li>
-                <li><a href="">Golf Careers</a></li>
-                <li><a href="book_lessons.html">Golf Lessons</a></li>
-                <li><a href="login.html" class="active">Login</a></li>
+                <li>Home</li>
+                <li>Gallery</li>
+                <li>Golf Careers</li>
+                <li><a href="{% url 'book_lessons' %}">Golf Lessons</a></li>
             </ul>
         </nav>
     </header>
     <div class="register-container">
         <h2>Register</h2>
-        <form method="post">
+        <form method="post" action="{% url 'register' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Register</button>
@@ -54,4 +55,5 @@
     </footer>
     <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

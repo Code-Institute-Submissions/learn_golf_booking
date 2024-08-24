@@ -1,11 +1,9 @@
 from django.db import models
 
-# Create your models here.
-
 class Booking(models.Model):
-    name = models.CharField(max_length=100, default='Default Name')
-    email = models.EmailField(default='example@example.com')
-    phone = models.CharField(max_length=15, default='00000000000')
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
     date = models.DateField()
     time = models.TimeField()
 

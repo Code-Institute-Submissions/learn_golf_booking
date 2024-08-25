@@ -11,53 +11,86 @@
 
 <body id="booking-picture">
     <header>
-        <a href="book_lessons.html">
+        <a href="{% url 'book_lessons' %}">
             <h1 id="logo">Learn Golf <i class="fa-solid fa-golf-ball-tee"></i></h1>
         </a>
         <input type="checkbox" id="nav-toggle" name="nav-toggle">
         <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
         <nav>
             <ul id="menu">
-                <li>Home</li>
-                <li>Gallery</li>
-                <li>Golf Careers</li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Golf Careers</a></li>
                 <li><a href="{% url 'book_lessons' %}" class="active">Golf Lessons</a></li>
             </ul>
         </nav>
     </header>
+
     <section id="account">
         {% if user.is_authenticated %}
         <p>You are logged in as {{ user.username }} <a href="{% url 'logout' %}">(LOGOUT)</a></p>
-        <form method="POST" action="{% url 'book_lessons' %}">
+
+        <h2>{% if editing %}Edit Booking{% else %}Book a Lesson{% endif %}</h2>
+
+        <form method="POST" action="{% if editing %}{% url 'booking_update' booking_id %}{% else %}{% url 'book_lessons' %}{% endif %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" id="submit-booking">Submit Booking</button>
+            <button type="submit" id="submit-booking">
+                {% if editing %}Update Booking{% else %}Submit Booking{% endif %}
+            </button>
         </form>
+
         {% else %}
         <a href="{% url 'signin' %}">Login</a> / <a href="{% url 'register' %}">Register</a>
         <p>You must be logged in to make a booking.</p>
         {% endif %}
     </section>
+    <section>
+        <h2>Your Bookings</h2>
+        {% if bookings %}
+        <ul>
+            {% for booking in bookings %}
+            <li>
+                <strong>{{ booking.date }} at {{ booking.time }}</strong> - {{ booking.name }}
+                <a href="{% url 'booking_update' booking.id %}">Edit</a>
+                <form action="{% url 'book_lessons' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete_booking_id" value="{{ booking.id }}">
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this booking?');">
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>You have no bookings.</p>
+        {% endif %}
+    </section>
+    <footer>
     <footer>
         <ul id="socials">
             <li>
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our facebook page(opens in new tab)"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Visit our facebook page (opens in new tab)">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
             </li>
             <li>
-                <a href="https://twitter.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our twitter page(opens in a new tab)"> <i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Visit our twitter page (opens in a new tab)">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
             </li>
             <li>
-                <a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our YouTube channel(opens in a new tab)"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="Visit our YouTube channel (opens in a new tab)">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
             </li>
             <li>
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Instagram page(opens in a new tab)"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Visit our Instagram page (opens in a new tab)">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
             </li>
         </ul>
     </footer>
+
     <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
 </body>
 

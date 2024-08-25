@@ -1,6 +1,8 @@
 from django import forms
 from .models import Booking
 
+TIME_CHOICES = [(f"{hour:02d}:00", f"{hour:02d}:00") for hour in range(9, 18)]
+
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
@@ -13,6 +15,6 @@ class BookingForm(forms.ModelForm):
             'time': 'Booking Time'
         }
         widgets = {
-            'date': forms.SelectDateWidget(),
-            'time': forms.TimeInput(attrs={'type': 'time'})
+            'date': forms.SelectDateWidget,
+            'time': forms.Select(choices=TIME_CHOICES),
         }

@@ -6,27 +6,32 @@ from .models import Booking
 @login_required
 def book_lessons(request):
     if request.method == 'POST':
-        if 'delete_booking_id' in request.POST:
-            booking_id = request.POST['delete_booking_id']
-            booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-            booking.delete()
+        if 'delete_booking_id' in request.POST: 
+            booking_id = request.POST.get('delete_booking_id')
+            booking_to_delete = get_object_or_404(Booking, id=booking_id, user=request.user)
+            booking_to_delete.delete()
             return redirect('book_lessons')
-
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            booking = form.save(commit=False)
-            booking.user = request.user
-            booking.save()
-            return redirect('book_lessons')
+        else:
+            if 'booking_id' in request.POST:  
+                booking = get_object_or_404(Booking, id=request.POST['booking_id'], user=request.user)
+                form = BookingForm(request.POST, instance=booking)
+            else: 
+                form = BookingForm(request.POST)
+            
+            if form.is_valid():
+                booking = form.save(commit=False)
+                booking.user = request.user
+                booking.save()
+                return redirect('book_lessons')
     else:
         form = BookingForm()
 
     bookings = Booking.objects.filter(user=request.user)
+
     return render(request, 'lessons/book_lessons.html', {
         'form': form,
         'bookings': bookings,
     })
-
 def home(request):
     return render(request, 'book_lessons.html')
 

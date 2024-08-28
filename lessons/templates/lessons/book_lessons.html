@@ -32,22 +32,27 @@
 
         <h2>{% if editing %}Edit Booking{% else %}Book a Lesson{% endif %}</h2>
 
-        <form method="POST"
-            action="{% if editing %}{% url 'booking_update' booking_id %}{% else %}{% url 'book_lessons' %}{% endif %}">
+        <form method="POST" id="bookingForm"
+            action="{% if editing and booking_id %}{% url 'booking_update' booking_id %}{% else %}{% url 'book_lessons' %}{% endif %}">
             {% csrf_token %}
+            {{ form.non_field_errors }}
             {{ form.as_p }}
-            <button type="submit" id="submit-booking">
-                {% if editing %}Update Booking{% else %}Submit Booking{% endif %}
+            <input type="hidden" id="selected_date" name="selected_date" value="{{ form.date.value|default:'' }}">
+            <input type="hidden" id="selected_time" name="selected_time" value="{{ form.time.value|default:'' }}">
+            {% if editing %}<button>Update Booking</button>{% endif %}
             </button>
         </form>
+        <div id="calendar" class="{% if not editing %}hidden-calendar{% endif %}"></div>
+        <div id="time-slots">
+            <h2>Available Time Slots</h2>
+            <ul id="time-slot-list"></ul>
+        </div>
 
         {% else %}
         <a href="{% url 'signin' %}">Login</a> / <a href="{% url 'register' %}">Register</a>
         <p>You must be logged in to make a booking.</p>
         {% endif %}
-    </section>
-    
-    <section>
+
         <h2 id="bookings-heading">Your Bookings</h2>
         {% if bookings %}
         <ul>
@@ -68,9 +73,8 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <p id="confirm-delete">Are you sure you want to delete this booking?</p>
-            <form id="deleteForm" method="post" action="{% url 'book_lessons' %}">
+            <form id="deleteForm" method="post" action="">
                 {% csrf_token %}
-                <input type="hidden" name="delete_booking_id" id="delete_booking_id">
                 <button type="submit">Yes, Delete</button>
                 <button type="button" onclick="closeModal()">Cancel</button>
             </form>
@@ -106,6 +110,7 @@
         </ul>
     </footer>
 
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
 </body>

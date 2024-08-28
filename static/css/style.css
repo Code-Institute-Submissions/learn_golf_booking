@@ -335,6 +335,59 @@ h2 {
     font-size: x-large;
     margin: 0;
 }
+
+/* Booking Calender */
+
+#calendar {
+    min-height: 800px; 
+    width: 100%;
+}
+#time-slots {
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+#time-slot-list {
+    list-style: none;
+    padding: 0;
+}
+
+#time-slot-list li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.time-slot-item {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+}
+
+.time-slot-item:hover {
+    background-color: #f0f0f0;
+}
+
+.time-slot-item.selected {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+.fc-day-selected {
+    background-color: olivedrab; 
+    opacity: 0.5;
+}
+#selected-date-display {
+    display: none;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+}
+.hidden-calendar {
+    display: none;
+}
 @media screen and (min-width: 1200px) {
     nav {
         display: block;

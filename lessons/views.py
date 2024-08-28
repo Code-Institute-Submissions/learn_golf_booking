@@ -1,73 +1,86 @@
+import json
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.dateparse import parse_date
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_GET, require_http_methods
+from django.core.exceptions import ValidationError
 from .forms import BookingForm
 from .models import Booking
+from datetime import datetime, timedelta
+from django.utils.timezone import make_aware
 
-@login_required
+def available_slots(request):
+    date_str = request.GET.get('date')
+    date = parse_date(date_str)
+
+    if date:
+        booked_times = Booking.objects.filter(date=date).values_list('time', flat=True)
+        all_times = [
+            "09:00", "10:00", "11:00", "12:00", "13:00",
+            "14:00", "15:00", "16:00", "17:00"
+        ]
+        booked_times = [bt.strftime('%H:%M') for bt in booked_times]
+
+        available_times = [time for time in all_times if time not in booked_times]
+        return JsonResponse(available_times, safe=False)
+    else:
+        return JsonResponse([], safe=False)
+
+@require_http_methods(["GET", "POST"])
 def book_lessons(request):
     if request.method == 'POST':
-        if 'delete_booking_id' in request.POST: 
-            booking_id = request.POST.get('delete_booking_id')
-            booking_to_delete = get_object_or_404(Booking, id=booking_id, user=request.user)
-            booking_to_delete.delete()
-            return redirect('book_lessons')
-        else:
-            if 'booking_id' in request.POST:  
-                booking = get_object_or_404(Booking, id=request.POST['booking_id'], user=request.user)
-                form = BookingForm(request.POST, instance=booking)
-            else: 
-                form = BookingForm(request.POST)
-            
-            if form.is_valid():
-                booking = form.save(commit=False)
-                booking.user = request.user
+        form = BookingForm(request.POST)
+        selected_date = request.POST.get('selected_date')
+        selected_time = request.POST.get('selected_time')
+
+        if form.is_valid() and selected_date and selected_time:
+            booking = form.save(commit=False)
+            booking.date = selected_date
+            booking.time = selected_time
+            booking.user = request.user
+
+            try:
+                booking.full_clean()  
                 booking.save()
-                return redirect('book_lessons')
+                return redirect('success')
+            except ValidationError as e:
+                form.add_error(None, e) 
+
+        bookings = Booking.objects.filter(user=request.user)  
+        return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings, 'error': 'Date and time must be selected.'})
+    
     else:
         form = BookingForm()
+        bookings = Booking.objects.filter(user=request.user) 
+        return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings})
 
-    bookings = Booking.objects.filter(user=request.user)
-
-    return render(request, 'lessons/book_lessons.html', {
-        'form': form,
-        'bookings': bookings,
-    })
-def home(request):
-    return render(request, 'book_lessons.html')
-
+@login_required
 def success(request):
     return render(request, 'lessons/success.html')
+
+def home(request):
+    return render(request, 'lessons/book_lessons.html') 
 
 @login_required
 def booking_update(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    form = BookingForm(request.POST or None, instance=booking)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect('book_lessons')
+    return render(request, 'lessons/book_lessons.html', {'form': form, 'editing': True})
 
-    if request.method == "POST":
-        form = BookingForm(request.POST, instance=booking)
-        if form.is_valid():
-            form.save()
-            return redirect('book_lessons')  #
-    else:
-        form = BookingForm(instance=booking)
-
-    return render(request, 'lessons/book_lessons.html', {
-        'form': form,
-        'editing': True,
-        'booking_id': booking_id,
-        'bookings': Booking.objects.filter(user=request.user),
-    })
 @login_required
 def booking_delete(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-    
-    if request.method == "POST":
-        if 'confirm_delete' in request.POST:
-            booking.delete()
-            return redirect('book_lessons')
 
-    bookings = Booking.objects.filter(user=request.user)
+    if request.method == "POST":
+        booking.delete()
+        return redirect('book_lessons') 
+
     return render(request, 'lessons/book_lessons.html', {
-        'bookings': bookings,
-        'delete_confirmation': True,  
-        'booking_to_delete': booking,  
+        'bookings': Booking.objects.filter(user=request.user),
+        'delete_confirmation': True,
+        'booking_to_delete': booking
     })

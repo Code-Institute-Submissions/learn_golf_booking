@@ -3,49 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success</title>
+    <title>Booking Successful</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
-        <a href="book_lessons.html">
+        <a href="{% url 'home' %}">
             <h1 id="logo">Learn Golf <i class="fa-solid fa-golf-ball-tee"></i></h1>
         </a>
         <input type="checkbox" id="nav-toggle" name="nav-toggle">
         <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
         <nav>
             <ul id="menu">
-                <li>Home</li>
-                <li>Gallery</li>
-                <li>Golf Careers</li>
-                <li><a href="{% url 'book_lessons' %}" class="active">Golf Lessons</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Golf Careers</a></li>
+                <li><a href="{% url 'book_lessons' %}">Golf Lessons</a></li>
             </ul>
         </nav>
     </header>
-    <h1 class="success">Booking Successful</h1>
-    <h3>Thank you!</h3>
-    <p class="confirm">Your booking has been successfully processed, we will contact you shortly.</p>
+
+    <main>
+        <h2>Booking Successful!</h2>
+        <p>Thank you for booking a lesson with us. We look forward to seeing you!</p>
+        <a href="{% url 'book_lessons' %}">Book another lesson</a>
+    </main>
+
     <footer>
         <ul id="socials">
             <li>
                 <a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our facebook page(opens in new tab)"><i class="fa-brands fa-facebook-f"></i></a>
+                   aria-label="Visit our facebook page (opens in new tab)">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
             </li>
             <li>
                 <a href="https://twitter.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our twitter page(opens in a new tab)"> <i class="fa-brands fa-x-twitter"></i></a>
+                   aria-label="Visit our twitter page (opens in a new tab)">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
             </li>
             <li>
                 <a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our YouTube channel(opens in a new tab)"><i class="fa-brands fa-youtube"></i></a>
+                   aria-label="Visit our YouTube channel (opens in a new tab)">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
             </li>
             <li>
                 <a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                    aria-label="Visit our Instagram page(opens in a new tab)"><i class="fa-brands fa-instagram"></i></a>
+                   aria-label="Visit our Instagram page (opens in a new tab)">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
             </li>
         </ul>
     </footer>
-    <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
 </body>
 </html>

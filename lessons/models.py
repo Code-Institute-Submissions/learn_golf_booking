@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -9,5 +10,10 @@ class Booking(models.Model):
     date = models.DateField()
     time = models.TimeField()
 
-    def __str__(self):
-        return f"{self.name} - {self.date} at {self.time}"
+    def clean(self):
+        if Booking.objects.filter(date=self.date, time=self.time).exists():
+            raise ValidationError("A booking for this date and time already exists.")
+    
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)

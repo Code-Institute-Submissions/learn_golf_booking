@@ -4,10 +4,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.dateparse import parse_date
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_http_methods
+from django.dispatch import receiver
+from django.contrib.auth.signals import user_logged_in
 from django.core.exceptions import ValidationError
 from .forms import BookingForm
 from .models import Booking
 from datetime import datetime, timedelta
+from django.utils import timezone
 from django.utils.timezone import make_aware
 
 def available_slots(request):
@@ -27,32 +30,58 @@ def available_slots(request):
     else:
         return JsonResponse([], safe=False)
 
+@receiver(user_logged_in)
+def delete_past_bookings_on_login(sender, request, user, **kwargs):
+    today = timezone.now().date()
+    Booking.objects.filter(date__lt=today).delete()
+
+def delete_past_bookings():
+    today = timezone.now().date()
+    Booking.objects.filter(date__lt=today).delete()
+
 @require_http_methods(["GET", "POST"])
 def book_lessons(request):
+    delete_past_bookings()
+
     if request.method == 'POST':
         form = BookingForm(request.POST)
         selected_date = request.POST.get('selected_date')
         selected_time = request.POST.get('selected_time')
 
+        # Ensure the date and time are selected and valid
         if form.is_valid() and selected_date and selected_time:
+            selected_date_obj = parse_date(selected_date)
+            
+            # Check for past date booking
+            if selected_date_obj and selected_date_obj < timezone.now().date():
+                form.add_error(None, 'You cannot book a date in the past.')
+                bookings = Booking.objects.filter(user=request.user)
+                return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings})
+
             booking = form.save(commit=False)
-            booking.date = selected_date
-            booking.time = selected_time
+            booking.date = selected_date  # Set the date field manually
+            booking.time = selected_time  # Set the time field manually
             booking.user = request.user
 
+            # Process the checkbox values
+            booking.hire_clubs = form.cleaned_data.get('hire_clubs', False)
+            booking.on_course_lesson = form.cleaned_data.get('on_course_lesson', False)
+
+            # Validate the booking
             try:
-                booking.full_clean()  
+                booking.full_clean()  # Calls all validation methods
                 booking.save()
                 return redirect('success')
             except ValidationError as e:
-                form.add_error(None, e) 
+                form.add_error(None, e)  # Add validation errors to the form
 
-        bookings = Booking.objects.filter(user=request.user)  
+        # If the form is not valid, or any other error, return to the form
+        bookings = Booking.objects.filter(user=request.user)
         return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings, 'error': 'Date and time must be selected.'})
     
     else:
         form = BookingForm()
-        bookings = Booking.objects.filter(user=request.user) 
+        bookings = Booking.objects.filter(user=request.user)
         return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings})
 
 @login_required
@@ -77,7 +106,7 @@ def booking_delete(request, booking_id):
 
     if request.method == "POST":
         booking.delete()
-        return redirect('book_lessons') 
+        return redirect('book_lessons')
 
     return render(request, 'lessons/book_lessons.html', {
         'bookings': Booking.objects.filter(user=request.user),

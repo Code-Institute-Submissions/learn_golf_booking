@@ -11,6 +11,7 @@ body {
     margin: 0;
     min-height: 100vh;
     font-size: large;
+    transition: none !important;
 }
 
 .container {
@@ -137,6 +138,7 @@ p {
     background-image: url(../images/book.jpg.jpg);
     background-size: cover;
     background-position: 70%;
+    background-attachment: fixed;
     flex-grow: 1;
 }
 /* Accounts */
@@ -339,8 +341,14 @@ h2 {
 /* Booking Calender */
 
 #calendar {
-    min-height: 800px; 
-    width: 100%;
+    width: 80vw; /* Make the calendar width fluid */
+    margin: 0 auto; /* Center the calendar horizontally */
+    overflow: hidden; /* Prevent content overflow */
+    padding: 0; /* Remove extra padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: none; /* Prevent transitions that may cause layout shifts */
+    display: flex; /* Use Flexbox for stability */
+    justify-content: center; /* Center the calendar content */
 }
 #time-slots {
     max-width: 900px;

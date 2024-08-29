@@ -8,27 +8,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const calendarContainer = document.getElementById('calendar');
 
     function initializeCalendar() {
-        if (calendarEl && !calendar) { // Initialize calendar if it hasn't been already
+        if (calendarEl && !calendar) { 
+            console.log('Initializing calendar...');
             calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
+                validRange: {
+                    start: new Date().toISOString().split('T')[0] // Only allow dates from today onward
+                },
                 dateClick: function (info) {
+                    console.log('Date clicked:', info.dateStr);
                     document.getElementById('selected_date').value = info.dateStr;
                     fetchAvailableSlots(info.dateStr);
                     highlightSelectedDate(info.dateStr);
-                }
+                },
+                height: 'auto', // Ensure the calendar adapts to content height
+                contentHeight: 'auto', // Dynamically adjust content height
+                expandRows: true, // Make rows expand to fit available space
+                fixedWeekCount: false // Allows the calendar to adjust its height dynamically
             });
             calendar.render();
         }
     }
 
     function fetchAvailableSlots(date) {
-        console.log('Fetching available slots for date:', date); // Debugging log
         fetch(`/lessons/available-slots/?date=${encodeURIComponent(date)}`)
             .then(response => response.json())
             .then(data => {
-                console.log('Received data:', data); // Log the received data
                 const timeSlotList = document.getElementById('time-slot-list');
-                timeSlotList.innerHTML = ''; // Clear previous slots
+                timeSlotList.innerHTML = ''; 
                 if (data.length > 0) {
                     data.forEach(slot => {
                         const li = document.createElement('li');
@@ -41,6 +48,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(error => console.error('Error fetching time slots:', error));
+    }
+
+    function selectTimeSlot(time, date) {
+        document.getElementById('selected_time').value = time;
+        document.getElementById('selected_date').value = date;
+        document.getElementById('bookingForm').submit();
     }
 
     function highlightSelectedDate(dateStr) {
@@ -85,9 +98,8 @@ function selectTimeSlot(time, date) {
 }
 
 function openModal(bookingId) {
-    // Construct the correct delete URL with the booking ID
-    const deleteForm = document.getElementById('deleteForm');
-    deleteForm.action = `/lessons/booking/${bookingId}/delete/`; // Adjust if needed based on your URL patterns
+    document.getElementById('delete_booking_id').value = bookingId;
+    document.getElementById('deleteForm').action = `/bookings/delete/${bookingId}/`;
     document.getElementById('deleteModal').style.display = 'block';
 }
 
@@ -97,7 +109,7 @@ function closeModal() {
 
 window.onclick = function (event) {
     const modal = document.getElementById('deleteModal');
-    if (event.target === modal) {
+    if (event.target == modal) {
         closeModal();
     }
 }

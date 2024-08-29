@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lessons',
     'accounts',
-    
 ]
 
 AUTH_USER_MODEL = 'auth.User'  
@@ -60,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'lessons.middleware.DeletePastBookingsMiddleware',
 ]
 
 ROOT_URLCONF = 'codestar.urls'

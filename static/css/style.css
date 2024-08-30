@@ -27,8 +27,7 @@ form {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 100px 8px;
-    padding-top: 120px;
+    margin: 0px 8px;
 }
 
 .form-group {
@@ -42,37 +41,28 @@ label {
 }
 
 input, select {
-    width: 30vw;
     padding: 6px;
     margin-top: 6px;
-    box-sizing: border-box;
-    border: solid #ddd;
-    border-width: 3px;
+    border: 3px solid #ddd;
     border-radius: 4px;
     height: 40px;
     font-size: large;
     background: transparent;
-    color: Black;
-}
-
-.register-account {
-    color:olivedrab;
-    align-self: center;
-    padding: 0;
-    margin: 30px 0;
+    color: white;
+    min-width: 40vw;
 }
 
 button {
-    padding: 15px 15px;
+    padding: 15px;
     background-color: olivedrab;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 50px;
-    width: 30vw;
+    min-width: 25vw;
     align-self: center;
+    margin: 50px 0;
 }
 
 button:hover {
@@ -90,12 +80,13 @@ button:hover {
     align-self: start;
 }
 
-ul {
-    list-style-type: none;
+#book-lesson {
+    margin-top: 80px;
+    margin-left: 60px;
 }
 
-li{
-    padding-right: 20px;
+ul {
+    list-style-type: none;
 }
 
 a {
@@ -108,10 +99,18 @@ a {
 }
 
 .success {
-    color: black;
-    padding-top: 500px;
+    color: olivedrab;
+    padding-top: 300px;
     margin: 0 20px;
     text-align: center;
+}
+
+.thank-you {
+    color: olivedrab;
+    max-width: 100vw;
+    text-align: center;
+    margin-left: 0;
+    padding-top: 100px;
 }
 
 h3 {
@@ -127,7 +126,6 @@ h3 {
     text-align: center;
 }
 p {
-    max-width: 400px;
     align-self: flex-start;
     margin-left: 60px;
     color: #f4f4f4;
@@ -141,6 +139,7 @@ p {
     background-attachment: fixed;
     flex-grow: 1;
 }
+
 /* Accounts */
 
 h1 {
@@ -157,6 +156,38 @@ label {
     text-align: center;
     margin-top: 120px;
     text-transform: uppercase;
+}
+
+#register {
+    text-align: center;
+    color: olivedrab;
+    margin: 120px 0;
+}
+
+.register-account {
+    color:olivedrab;
+    align-self: center;
+    padding: 0;
+    margin: 30px 0;
+}
+
+small {
+    display: flex;
+    justify-content: center;
+}
+
+label {
+    text-align: center;
+}
+
+li {
+    text-align: center;
+    padding-right: 20px;
+    max-width: 70vw;
+}
+
+.register-container {
+    text-align: center;
 }
 /* Header */
 
@@ -215,6 +246,9 @@ ul {
     border-bottom: 1px solid #ffffff;
 }
 
+.fa-bars:before {
+    color: white;
+}
 /* Footer */
 
 #socials {
@@ -280,12 +314,24 @@ h2 {
     cursor: pointer;
 }
 
-.edit {
-    margin-top: 0;
+.delete {
     margin-left: 10px;
     cursor: pointer;
     font-size: 16px;
-    width: 80px;
+    min-width: 12vw;
+    height: 4.3vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    background-color: olivedrab;
+}
+
+.edit {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    min-width: 10vw;
     height: 4.3vh;
     align-items: center;
     display: flex;
@@ -313,8 +359,8 @@ h2 {
 
 #bookings-heading {
     color: white;
-    text-align: center;
     width: 60vw;
+    margin-top: 200px;
 }
 
 #bookings {
@@ -333,44 +379,37 @@ h2 {
 
 #no-bookings {
     min-width: 60vw;
-    text-align: center;
     font-size: x-large;
-    margin: 0;
+    margin-left: 120px;
 }
 
 /* Booking Calender */
 
 #calendar {
-    width: 80vw; /* Make the calendar width fluid */
-    margin: 0 auto; /* Center the calendar horizontally */
-    overflow: hidden; /* Prevent content overflow */
-    padding: 0; /* Remove extra padding */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    transition: none; /* Prevent transitions that may cause layout shifts */
-    display: flex; /* Use Flexbox for stability */
-    justify-content: center; /* Center the calendar content */
-}
-#time-slots {
-    max-width: 900px;
-    margin: 20px auto;
+    width: 80vw; 
+    margin: 0 auto; 
+    overflow: hidden; 
+    padding: 0;
+    box-sizing: border-box; 
+    transition: none; 
+    display: flex; 
+    justify-content: center;
 }
 
 #time-slot-list {
     list-style: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
+.time-slot-item,
 #time-slot-list li {
     padding: 10px;
     border: 1px solid #ddd;
     margin-bottom: 5px;
     cursor: pointer;
-}
-.time-slot-item {
-    cursor: pointer;
-    padding: 5px;
-    border: 1px solid #ddd;
-    margin: 5px 0;
+    color: white;
 }
 
 .time-slot-item:hover {
@@ -378,7 +417,7 @@ h2 {
 }
 
 .time-slot-item.selected {
-    background-color: #007bff;
+    background-color: olivedrab;
     color: white;
     font-weight: bold;
 }
@@ -393,6 +432,17 @@ h2 {
     color: #333;
     font-weight: bold;
 }
+
+#id_hire_clubs {
+    accent-color: olivedrab;
+    width: 25vw;
+}
+
+#id_on_course_lesson {
+    accent-color: olivedrab;
+    width: 25vw;
+}
+
 .hidden-calendar {
     display: none;
 }
@@ -406,5 +456,55 @@ h2 {
 
     header label {
         visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #bookings {
+        height: 8vh;
+        width: 85vw;
+        padding: 0;
+    }
+
+    .edit {
+        height: 7.6vh;
+        min-width: 15vw;
+    }
+
+    .delete {
+        height: 7.6vh;
+        min-width: 15vw;
+    }
+
+    #time-slot-list {
+        max-width: 80vw;
+    }
+    #time-slots {
+        text-align: center;
+        padding: 0 40px;
+    }
+    #booking-picture {
+        background-position: 83%;
+    }
+    #bookings-heading {
+        text-align: center;
+        width: 100vw;
+        margin-left: 0;
+    }
+    #book-lesson {
+        text-align: center;
+        margin: auto;
+    }
+    ul {
+        padding: 0 29px;
+    }
+    p {
+        margin: 40px;
+    }
+    input {
+        margin: 6px 30px;
+    }
+    label {
+
     }
 }

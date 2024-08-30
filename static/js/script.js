@@ -6,9 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const emailInput = document.querySelector('input[name="email"]');
     const phoneInput = document.querySelector('input[name="phone"]');
     const calendarContainer = document.getElementById('calendar');
+    const timeSlotList = document.getElementById('time-slot-list'); // Time slot list element
+    const timeSlotsSection = document.getElementById('time-slots'); // Time slots section
+
+    // Hide the time slots section initially
+    timeSlotsSection.style.display = 'none';
 
     function initializeCalendar() {
-        if (calendarEl && !calendar) { 
+        if (calendarEl && !calendar) {
             console.log('Initializing calendar...');
             calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
@@ -20,22 +25,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('selected_date').value = info.dateStr;
                     fetchAvailableSlots(info.dateStr);
                     highlightSelectedDate(info.dateStr);
-                },
-                height: 'auto', // Ensure the calendar adapts to content height
-                contentHeight: 'auto', // Dynamically adjust content height
-                expandRows: true, // Make rows expand to fit available space
-                fixedWeekCount: false // Allows the calendar to adjust its height dynamically
+                    // Show the time slots section when a date is clicked
+                    timeSlotsSection.style.display = 'block';
+                }
             });
             calendar.render();
         }
     }
 
     function fetchAvailableSlots(date) {
+        console.log(`Fetching available slots for date: ${date}`);
         fetch(`/lessons/available-slots/?date=${encodeURIComponent(date)}`)
             .then(response => response.json())
             .then(data => {
-                const timeSlotList = document.getElementById('time-slot-list');
-                timeSlotList.innerHTML = ''; 
+                console.log(`Available slots received: `, data);
+                timeSlotList.innerHTML = ''; // Clear previous slots
                 if (data.length > 0) {
                     data.forEach(slot => {
                         const li = document.createElement('li');
@@ -47,10 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     timeSlotList.innerHTML = '<li>No available slots for this date.</li>';
                 }
             })
-            .catch(error => console.error('Error fetching time slots:', error));
+            .catch(error => {
+                console.error('Error fetching time slots:', error);
+                timeSlotList.innerHTML = '<li>Error loading available slots. Please try again later.</li>';
+            });
     }
 
     function selectTimeSlot(time, date) {
+        console.log(`Selected time slot: ${time} on date: ${date}`);
         document.getElementById('selected_time').value = time;
         document.getElementById('selected_date').value = date;
         document.getElementById('bookingForm').submit();
@@ -67,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function checkInputs() {
         const allFilled = nameInput && nameInput.value.trim() && emailInput && emailInput.value.trim() && phoneInput && phoneInput.value.trim();
         if (allFilled) {
-            calendarContainer.style.display = 'block'; 
-            initializeCalendar(); 
+            calendarContainer.style.display = 'block';
+            initializeCalendar();
         } else {
-            calendarContainer.style.display = 'none'; 
+            calendarContainer.style.display = 'none';
         }
     }
 
@@ -91,20 +99,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-function selectTimeSlot(time, date) {
-    document.getElementById('selected_time').value = time;
-    document.getElementById('selected_date').value = date;
-    document.getElementById('bookingForm').submit();
-}
-
 function openModal(bookingId) {
     document.getElementById('delete_booking_id').value = bookingId;
     document.getElementById('deleteForm').action = `/bookings/delete/${bookingId}/`;
-    document.getElementById('deleteModal').style.display = 'block';
+    document.getElementById('deleteModal').style.display = 'block'; 
 }
 
 function closeModal() {
-    document.getElementById('deleteModal').style.display = 'none';
+    document.getElementById('deleteModal').style.display = 'none'; 
+}
+
+function submitDeleteForm() {
+    document.getElementById('deleteForm').submit(); 
 }
 
 window.onclick = function (event) {

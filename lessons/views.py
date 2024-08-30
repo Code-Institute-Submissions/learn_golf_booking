@@ -102,14 +102,14 @@ def booking_update(request, booking_id):
 
 @login_required
 def booking_delete(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    try:
+        booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
-    if request.method == "POST":
-        booking.delete()
-        return redirect('book_lessons')
+        if request.method == "POST":
+            booking.delete() 
+            return redirect('book_lessons') 
 
-    return render(request, 'lessons/book_lessons.html', {
-        'bookings': Booking.objects.filter(user=request.user),
-        'delete_confirmation': True,
-        'booking_to_delete': booking
-    })
+    except Booking.DoesNotExist:
+        raise Http404("The booking does not exist or you do not have permission to delete it.")
+        
+    return redirect('book_lessons')

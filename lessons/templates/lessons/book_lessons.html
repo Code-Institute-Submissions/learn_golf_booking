@@ -18,9 +18,9 @@
         <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
         <nav>
             <ul id="menu">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Golf Careers</a></li>
+                <li>Home</a></li>
+                <li>Gallery</a></li>
+                <li>Golf Careers</li>
                 <li><a href="{% url 'book_lessons' %}" class="active">Golf Lessons</a></li>
             </ul>
         </nav>
@@ -30,7 +30,7 @@
         {% if user.is_authenticated %}
         <p>You are logged in as {{ user.username }} <a href="{% url 'logout' %}">(LOGOUT)</a></p>
 
-        <h2>{% if editing %}Edit Booking{% else %}Book a Lesson{% endif %}</h2>
+        <h2 id="book-lesson">{% if editing %}Edit Booking{% else %}Book a Lesson{% endif %}</h2>
 
         <form method="POST" id="bookingForm"
             action="{% if editing and booking_id %}{% url 'booking_update' booking_id %}{% else %}{% url 'book_lessons' %}{% endif %}">
@@ -43,7 +43,7 @@
             </button>
         </form>
         <div id="calendar" class="{% if not editing %}hidden-calendar{% endif %}"></div>
-        <div id="time-slots">
+        <div id="time-slots" style="display: none;">
             <h2>Available Time Slots</h2>
             <ul id="time-slot-list"></ul>
         </div>
@@ -60,7 +60,7 @@
             <li id="bookings">
                 <strong>{{ booking.date }} at {{ booking.time }}</strong> - {{ booking.name }}
                 <a href="{% url 'booking_update' booking.id %}" class="edit">Edit</a>
-                <button type="button" class="edit" onclick="openModal('{{ booking.id }}')">Delete</button>
+                <button type="button" class="delete" onclick="openModal('{{ booking.id }}')">Delete</button>
             </li>
             {% endfor %}
         </ul>
@@ -73,10 +73,10 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <p id="confirm-delete">Are you sure you want to delete this booking?</p>
-            <form id="deleteForm" method="post" action="">
+            <form id="deleteForm" method="post">
                 {% csrf_token %}
                 <input type="hidden" id="delete_booking_id" name="delete_booking_id">
-                <button type="submit">Yes, Delete</button>
+                <button type="button" onclick="submitDeleteForm()">Yes, Delete</button>
                 <button type="button" onclick="closeModal()">Cancel</button>
             </form>
         </div>

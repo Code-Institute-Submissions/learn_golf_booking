@@ -48,34 +48,29 @@ def book_lessons(request):
         selected_date = request.POST.get('selected_date')
         selected_time = request.POST.get('selected_time')
 
-        # Ensure the date and time are selected and valid
         if form.is_valid() and selected_date and selected_time:
             selected_date_obj = parse_date(selected_date)
             
-            # Check for past date booking
             if selected_date_obj and selected_date_obj < timezone.now().date():
                 form.add_error(None, 'You cannot book a date in the past.')
                 bookings = Booking.objects.filter(user=request.user)
                 return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings})
 
             booking = form.save(commit=False)
-            booking.date = selected_date  # Set the date field manually
-            booking.time = selected_time  # Set the time field manually
+            booking.date = selected_date  
+            booking.time = selected_time  
             booking.user = request.user
 
-            # Process the checkbox values
             booking.hire_clubs = form.cleaned_data.get('hire_clubs', False)
             booking.on_course_lesson = form.cleaned_data.get('on_course_lesson', False)
 
-            # Validate the booking
             try:
-                booking.full_clean()  # Calls all validation methods
+                booking.full_clean()
                 booking.save()
                 return redirect('success')
             except ValidationError as e:
-                form.add_error(None, e)  # Add validation errors to the form
+                form.add_error(None, e)
 
-        # If the form is not valid, or any other error, return to the form
         bookings = Booking.objects.filter(user=request.user)
         return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings, 'error': 'Date and time must be selected.'})
     
@@ -111,5 +106,5 @@ def booking_delete(request, booking_id):
 
     except Booking.DoesNotExist:
         raise Http404("The booking does not exist or you do not have permission to delete it.")
-        
+
     return redirect('book_lessons')

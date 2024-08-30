@@ -6,10 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const emailInput = document.querySelector('input[name="email"]');
     const phoneInput = document.querySelector('input[name="phone"]');
     const calendarContainer = document.getElementById('calendar');
-    const timeSlotList = document.getElementById('time-slot-list'); // Time slot list element
-    const timeSlotsSection = document.getElementById('time-slots'); // Time slots section
+    const timeSlotList = document.getElementById('time-slot-list'); 
+    const timeSlotsSection = document.getElementById('time-slots'); 
 
-    // Hide the time slots section initially
     timeSlotsSection.style.display = 'none';
 
     function initializeCalendar() {
@@ -18,14 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
             calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 validRange: {
-                    start: new Date().toISOString().split('T')[0] // Only allow dates from today onward
+                    start: new Date().toISOString().split('T')[0]
                 },
                 dateClick: function (info) {
                     console.log('Date clicked:', info.dateStr);
                     document.getElementById('selected_date').value = info.dateStr;
                     fetchAvailableSlots(info.dateStr);
                     highlightSelectedDate(info.dateStr);
-                    // Show the time slots section when a date is clicked
                     timeSlotsSection.style.display = 'block';
                 }
             });
@@ -39,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 console.log(`Available slots received: `, data);
-                timeSlotList.innerHTML = ''; // Clear previous slots
+                timeSlotList.innerHTML = '';
                 if (data.length > 0) {
                     data.forEach(slot => {
                         const li = document.createElement('li');

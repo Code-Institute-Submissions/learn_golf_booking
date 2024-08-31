@@ -171,6 +171,10 @@ label {
     color: black;
 }
 
+#id_username {
+    color: black;
+}
+
 #register {
     text-align: center;
     color: olivedrab;

@@ -1,131 +1,122 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# LEARN GOLF
 
-Welcome Lewis Clements,
+"Learn Golf" is a django based website with the aim to convince people to take up golf. The site informs people on what careers paths are available through golf and also provides information on how to achieve a career as a professional golfer aswell as offering lessons to beginners.  
+- - -
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Table of Contents
+### [User Experience](#user-experience-ux)
+* [Project Goals](#project-goals)
+* [Agile Methodology](#agile-methodology)
+* [Target Audience](#target-audience)
+* [First time user](#first-time-user)
+* [Registered user](#registered-user)
+* [Admin user](#admin-user)
+### [Design](#design-1)
+* [Color Scheme](#color-scheme)
+* [Cabin Images](#cabin-images)
+* [Wireframes](#wireframes)
+* [Data Model](#data-models)
+* [User Journey](#user-journey)
+* [Database Scheme](#database-scheme)
+### [Security Features](#security-features-1)
+### [Features](#features-1)
+* [Existing Features](#existing-features)
+* [Features Left to Implement](#features-left-to-implement)
+### [Technologies Used](#technologies-used-1)
+* [Languages Used](#languages-used)
+* [Databases Used](#databases-used)
+* [Frameworks Used](#frameworks-used)
+* [Programs Used](#programs-used)
+### [Deployment and Local developement](#deployment-and-local-developement-1)
+* [Local Developement](#local-developement)
+* [ElephantSQL Database](#elephantsql-database)
+* [Cloudinary](#cloudinary)
+* [Heroku Deployment](#heroku-deployment)
+### [Testing](#testing-1)
+### [References](#references-1)
+* [Docs](#docs)
+* [Content](#content)
+* [Acknowledgments](#acknowledgments)
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+- - -
 
-## Gitpod Reminders
+## User Experience (UX)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-`python3 -m http.server`
+Become captivated by the benefits and career oppurtunities provided by taking up golf. The site offers intuitive navigation, satisfying visuals and a simple, effortless booking system where you can also tailor your experience to what you require. This can be also be done on the go as the site is also mobile friendly!
 
-A blue button should appear to click: _Make Public_,
+### Project Goals
 
-Another blue button should appear to click: _Open Browser_.
+The goal of the Learn Golf project is to create an immersive and user-friendly online platform that allows users to learn, book, and experience golf and what it has to offer. The project aims to provide a seamless user experience, promoting the aesthetic of golf through captivating golf themed visuals, extensive information and a booking process for however many lessons the user desires.
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+### Agile Methodology
 
-A blue button should appear to click: _Make Public_,
+Agile Methodology was used to help prioritize and organize tasks, writing the user stories and using Project Boards on Github. A template was created to help write User Stories and define Epics
 
-Another blue button should appear to click: _Open Browser_.
+* Epics were written containing possible user stories and based on that the website was made.
+* User stories were created by looking at epics and through iterations the project was advancing.
+* Project Board is set to public.
+* Project Board was used to track progression of the task through the Todo, In progress and Done columns
+* Labels were added to sort the issues based on the importance.
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### User Stories
 
-To log into the Heroku toolbelt CLI:
+#### Epics
+* Initial Deployment
+* Home Page
+* User Registration
+* Website Admin and Bookings
+* Maintain consistent design with responsiveness in mind
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#### User Stories
+1. Initial Deployment
+* Create new Heroku application
+* Link Github repository to the Heroku app
+2. Home Page
+* Create a navigation bar
+* Create a footer
+3. User Registration
+* Sign Up page
+* User registration, log in, log out
+* Display users name
+4. Website Admin and Bookings
+* Alert messages
+* Crud functionality
+* Cabin pagination
+* Admin panel
+* Double bookings
+* Book Amenities
+* Total Price
+4. Maintain consistent design with responsiveness in mind
+* Maintain consistent design
+* Test responsiveness
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+Detailed look can be found in the [project board](https://github.com/users/Thomas-Tomo/projects/2)
 
-### Connecting your Mongo database
+### Target Audience
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+* Individuals who are looking to try golf aswell as those who have never thought about it.
+* Golfers looking for an effortless booking process for lessons with a PGA pro to help improve their game.
+* Users who value a captivating and visually appealing online experience.
+* Mobile users who want the convenience of booking their lessons from any device.
 
-------
+### First time user
 
-## Release History
+* Easy and intuitive website navigation.
+* Engaging visuals showcasing golf and what it has to offer.
+* Informative content providing an insight into what to expect when getting into golf
+* User-friendly forms with clear validation messages to ensure correct input.
+* Simple Registration process.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Registered User
 
-**June 18, 2024,** Add Mongo back into template
+* Effortless login process with a secure and personalized user account.
+* Access to all of the users bookings with the ability to edit or delete them allowing flexibility and convenience.
+* Ability to book as many lessons as the user desires.
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+### Admin user
 
-**May 28 2024:** Fix Mongo and Links installs
-
-**April 26 2024:** Update node version to 16
-
-**September 20 2023:** Update Python version to 3.9.17.
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+* Secure and separate login portal for admin users with appropriate access control.
+* Access to an admin dashboard for managing bookings.
+* Ability to add, edit, or delete bookings and change availability.
+* Ability to delete user accounts, providing the necessary control for managing user data and accounts.

@@ -1,17 +1,14 @@
-import json
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.dateparse import parse_date
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_GET, require_http_methods
+from django.views.decorators.http import require_http_methods
 from django.dispatch import receiver
 from django.contrib.auth.signals import user_logged_in
 from django.core.exceptions import ValidationError
 from .forms import BookingForm
 from .models import Booking
-from datetime import datetime, timedelta
 from django.utils import timezone
-from django.utils.timezone import make_aware
 
 def available_slots(request):
     date_str = request.GET.get('date')

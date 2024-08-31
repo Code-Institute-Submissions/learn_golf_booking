@@ -31,7 +31,7 @@ SECRET_KEY =  os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', 'https://8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', ".herokuapp.com"]
+ALLOWED_HOSTS = ['8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', 'https://8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', "https://learn-golf-booking-f01bc1c04312.herokuapp.com/"]
 
 
 # Application definition
@@ -82,6 +82,7 @@ TEMPLATES = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net',
+    'https://learn-golf-booking-f01bc1c04312.herokuapp.com/'
 ]
 
 WSGI_APPLICATION = 'codestar.wsgi.application'
@@ -136,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS =  [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type

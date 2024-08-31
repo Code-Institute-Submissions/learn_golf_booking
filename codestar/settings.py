@@ -31,7 +31,7 @@ SECRET_KEY =  os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', 'https://8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', "https://learn-golf-booking-f01bc1c04312.herokuapp.com/"]
+ALLOWED_HOSTS = ['8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', 'learn-golf-booking-f01bc1c04312.herokuapp.com']
 
 
 # Application definition

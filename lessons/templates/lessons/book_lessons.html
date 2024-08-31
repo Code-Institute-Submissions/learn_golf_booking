@@ -53,7 +53,7 @@
         <ul>
             {% for booking in bookings %}
             <li id="bookings">
-                <strong>{{ booking.date }} at {{ booking.time }}</strong> - {{ booking.name }}
+                <strong style="font-size: medium;">{{ booking.date }} at {{ booking.time }}</strong> - {{ booking.name }}
                 <a href="{% url 'booking_update' booking.id %}" class="edit">Edit</a>
                 <button type="button" class="delete" onclick="openModal('{{ booking.id }}')">Delete</button>
             </li>

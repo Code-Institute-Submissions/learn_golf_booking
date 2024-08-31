@@ -8,7 +8,9 @@ body {
     font-family: 'kanit', sans-serif;
     padding: 0;
     background-color: #f4f4f4;
+    overflow-x: hidden;
     margin: 0;
+    max-width: 100vw;
     min-height: 100vh;
     font-size: large;
     transition: none !important;
@@ -49,7 +51,7 @@ input, select {
     font-size: large;
     background: transparent;
     color: white;
-    min-width: 40vw;
+    max-width: 60vw;
     text-align: center;
 }
 
@@ -358,6 +360,10 @@ h2 {
     background-color: darkgreen;
 }
 
+.delete:hover {
+    background-color: darkgreen;
+}
+
 #confirm-delete {
     color: olivedrab;
     text-align: center;
@@ -384,7 +390,7 @@ h2 {
     width: 60vw;
     padding-top: 0;
     margin: 0;
-    height: 4.5vh;
+    min-height: 9vh;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -493,14 +499,22 @@ h2 {
         width: 85vw;
         padding: 0;
     }
+    
+    #calendar {
+        font-size: large;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: large;
+    }
 
     .edit {
-        height: 7.8vh;
+        height: 8.8vh;
         min-width: 15vw;
     }
 
     .delete {
-        height: 7.8vh;
+        height: 8.8vh;
         min-width: 15vw;
     }
 

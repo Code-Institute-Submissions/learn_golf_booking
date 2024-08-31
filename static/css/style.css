@@ -45,11 +45,12 @@ input, select {
     margin-top: 6px;
     border: 3px solid #ddd;
     border-radius: 4px;
-    height: 40px;
+    height: 5vh;
     font-size: large;
     background: transparent;
     color: white;
     min-width: 40vw;
+    text-align: center;
 }
 
 button {
@@ -200,7 +201,6 @@ label {
 li {
     text-align: center;
     padding-right: 20px;
-    max-width: 70vw;
 }
 
 .register-container {
@@ -481,9 +481,13 @@ h2 {
     #login-button {
         font-size: xx-large;
     }
+
+    input{
+        font-size: xx-large;
+    }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 760px) {
     #bookings {
         height: 8vh;
         width: 85vw;
@@ -491,12 +495,12 @@ h2 {
     }
 
     .edit {
-        height: 7.6vh;
+        height: 7.8vh;
         min-width: 15vw;
     }
 
     .delete {
-        height: 7.6vh;
+        height: 7.8vh;
         min-width: 15vw;
     }
 
@@ -527,5 +531,20 @@ h2 {
     }
     input {
         margin: 6px 30px;
+        font-size: x-large;
+    }
+}
+
+@media screen and (max-width:1550px) {
+    #account {
+        font-size: x-large;
+    }
+
+    #login-button {
+        font-size: x-large;
+    }
+
+    input{
+        font-size: x-large;
     }
 }

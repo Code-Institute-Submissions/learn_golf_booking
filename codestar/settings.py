@@ -29,7 +29,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY =  os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', 'learn-golf-booking-f01bc1c04312.herokuapp.com']
 

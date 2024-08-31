@@ -28,7 +28,7 @@
 
     <section id="account">
         {% if user.is_authenticated %}
-        <p>You are logged in as {{ user.username }} <a href="{% url 'logout' %}">(LOGOUT)</a></p>
+        <p id="you-are">You are logged in as {{ user.username }} <a href="{% url 'logout' %}">(LOGOUT)</a></p>
 
         <h2 id="book-lesson">{% if editing %}Edit Booking{% else %}Book a Lesson{% endif %}</h2>
 
@@ -48,11 +48,6 @@
             <ul id="time-slot-list"></ul>
         </div>
 
-        {% else %}
-        <a href="{% url 'login' %}">Login</a> / <a href="{% url 'register' %}">Register</a>
-        <p>You must be logged in to make a booking.</p>
-        {% endif %}
-
         <h2 id="bookings-heading">Your Bookings</h2>
         {% if bookings %}
         <ul>
@@ -66,6 +61,11 @@
         </ul>
         {% else %}
         <p id="no-bookings">You have no bookings.</p>
+        {% endif %}
+
+        {% else %}
+        <p id="login-button"><a href="{% url 'login' %}">Click Here to Login</a></p>
+        <p>You must be logged in to make a booking.</p>
         {% endif %}
     </section>
 

@@ -35,10 +35,13 @@ def delete_past_bookings_on_login(sender, request, user, **kwargs):
 def delete_past_bookings():
     today = timezone.now().date()
     Booking.objects.filter(date__lt=today).delete()
-
+    
 @require_http_methods(["GET", "POST"])
 def book_lessons(request):
     delete_past_bookings()
+
+    if not request.user.is_authenticated:
+        return redirect('login') 
 
     if request.method == 'POST':
         form = BookingForm(request.POST)
@@ -47,15 +50,15 @@ def book_lessons(request):
 
         if form.is_valid() and selected_date and selected_time:
             selected_date_obj = parse_date(selected_date)
-            
+
             if selected_date_obj and selected_date_obj < timezone.now().date():
                 form.add_error(None, 'You cannot book a date in the past.')
                 bookings = Booking.objects.filter(user=request.user)
                 return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings})
 
             booking = form.save(commit=False)
-            booking.date = selected_date  
-            booking.time = selected_time  
+            booking.date = selected_date
+            booking.time = selected_time
             booking.user = request.user
 
             booking.hire_clubs = form.cleaned_data.get('hire_clubs', False)
@@ -70,11 +73,12 @@ def book_lessons(request):
 
         bookings = Booking.objects.filter(user=request.user)
         return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings, 'error': 'Date and time must be selected.'})
-    
+
     else:
         form = BookingForm()
-        bookings = Booking.objects.filter(user=request.user)
+        bookings = Booking.objects.filter(user=request.user) if request.user.is_authenticated else []
         return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings})
+
 
 @login_required
 def success(request):

@@ -81,8 +81,7 @@ button:hover {
 }
 
 #book-lesson {
-    margin-top: 80px;
-    margin-left: 60px;
+    margin-left: 120px;
 }
 
 ul {
@@ -103,9 +102,10 @@ a {
     padding-top: 300px;
     margin: 0 20px;
     text-align: center;
+    text-decoration: none;
 }
 
-.thank-you {
+#thank-you {
     color: olivedrab;
     max-width: 100vw;
     text-align: center;
@@ -127,7 +127,7 @@ h3 {
 }
 p {
     align-self: flex-start;
-    margin-left: 60px;
+    margin-left: 100px;
     color: #f4f4f4;
     margin-top: 40px;
 }
@@ -152,10 +152,23 @@ label {
     margin: 20px;
 }
 
+#you-are {
+    margin-top: 10px;
+}
+
 #login {
     text-align: center;
     margin-top: 120px;
     text-transform: uppercase;
+}
+
+#login-button {
+    margin-top: 450px;
+    font-size: x-large;
+}
+
+#id_password {
+    color: black;
 }
 
 #register {
@@ -269,9 +282,7 @@ footer {
 }
 
 h2 {
-    text-align: center;
     color: white;
-    margin-top: 40px;
     font-size: xxx-large;
 }
 
@@ -359,8 +370,9 @@ h2 {
 
 #bookings-heading {
     color: white;
-    width: 60vw;
-    margin-top: 200px;
+    min-width: 40vw;
+    display: flex;
+    margin-left: 100px;
 }
 
 #bookings {
@@ -380,7 +392,7 @@ h2 {
 #no-bookings {
     min-width: 60vw;
     font-size: x-large;
-    margin-left: 120px;
+    margin-left: 100px;
 }
 
 /* Booking Calender */
@@ -456,6 +468,14 @@ h2 {
 
     header label {
         visibility: hidden;
+    }
+
+    #account {
+        font-size: xx-large;
+    }
+
+    #login-button {
+        font-size: xx-large;
     }
 }
 

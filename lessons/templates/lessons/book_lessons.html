@@ -22,38 +22,42 @@
                 <li>Gallery</li>
                 <li>Golf Careers</li>
                 <li><a href="{% url 'book_lessons' %}" class="active">Golf Lessons</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="account">
         {% if user.is_authenticated %}
-        <p id="you-are">You are logged in as {{ user.username }} <a href="{% url 'logout' %}">(LOGOUT)</a></p>
+        <p id="you-are">You are logged in as {{ user.username }}</p>
 
         <h2 id="book-lesson">{% if editing %}Edit Booking{% else %}Book a Lesson{% endif %}</h2>
-
-        <form method="POST" id="bookingForm"
-            action="{% if editing and booking_id %}{% url 'booking_update' booking_id %}{% else %}{% url 'book_lessons' %}{% endif %}">
-            {% csrf_token %}
-            {{ form.non_field_errors }}
-            {{ form.as_p }}
-            <input type="hidden" id="selected_date" name="selected_date" value="{{ form.date.value|default:'' }}">
-            <input type="hidden" id="selected_time" name="selected_time" value="{{ form.time.value|default:'' }}">
-            {% if editing %}<button>Update Booking</button>{% endif %}
-            </button>
-        </form>
+        <div id="edit">
+            <form method="POST" id="bookingForm"
+                action="{% if editing and booking_id %}{% url 'booking_update' booking_id %}{% else %}{% url 'book_lessons' %}{% endif %}">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.as_p }}
+                <input type="hidden" id="selected_date" name="selected_date" value="{{ form.date.value|default:'' }}">
+                <input type="hidden" id="selected_time" name="selected_time" value="{{ form.time.value|default:'' }}">
+                </button>
+            </form>
+        </div>
         <div id="calendar" class="{% if not editing %}hidden-calendar{% endif %}"></div>
         <div id="time-slots" style="display: none;">
             <h2>Available Time Slots</h2>
             <ul id="time-slot-list"></ul>
         </div>
 
+        <div id="update-booking">
+            {% if editing %}<button id="update-booking-button">Update Booking</button>{% endif %}
+        </div>
         <h2 id="bookings-heading">Your Bookings</h2>
         {% if bookings %}
         <ul>
             {% for booking in bookings %}
             <li id="bookings">
-                <strong style="font-size: medium;">{{ booking.date }} at {{ booking.time }}</strong> - {{ booking.name }}
+                <strong>{{ booking.date }} at {{ booking.time }}</strong> - {{ booking.name }}
                 <a href="{% url 'booking_update' booking.id %}" class="edit">Edit</a>
                 <button type="button" class="delete" onclick="openModal('{{ booking.id }}')">Delete</button>
             </li>

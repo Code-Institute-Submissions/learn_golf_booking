@@ -26,10 +26,10 @@ body {
 }
 
 form {
-    display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 70vh;
     margin: 0px 8px;
+    text-align: center;
 }
 
 .form-group {
@@ -44,14 +44,13 @@ label {
 
 input, select {
     padding: 6px;
-    margin-top: 6px;
     border: 3px solid #ddd;
     border-radius: 4px;
     height: 5vh;
     font-size: large;
     background: transparent;
     color: white;
-    max-width: 60vw;
+    min-width: 50vw;
     text-align: center;
 }
 
@@ -63,9 +62,9 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    min-width: 25vw;
+    min-width: 15vw;
     align-self: center;
-    margin: 50px 0;
+    margin: 5cqmax 0;
 }
 
 button:hover {
@@ -128,11 +127,11 @@ h3 {
     margin: 0 8px;
     text-align: center;
 }
+
 p {
     align-self: flex-start;
     margin-left: 100px;
     color: #f4f4f4;
-    margin-top: 40px;
 }
 
 #booking-picture {
@@ -207,6 +206,14 @@ li {
 
 .register-container {
     text-align: center;
+}
+
+#id_on_course_lesson {
+    height: 5vh;
+}
+ 
+#id_hire_clubs {
+    height: 5vh;
 }
 /* Header */
 
@@ -399,10 +406,17 @@ h2 {
     
 }
 
+#update-booking {
+    text-align: center;
+}
+
+#update-booking-button {
+    height: 8vh;
+}
+
 #no-bookings {
     min-width: 60vw;
     font-size: x-large;
-    margin-left: 100px;
 }
 
 /* Booking Calender */
@@ -490,16 +504,45 @@ h2 {
 
     input{
         font-size: xx-large;
+        min-width: 40vw;
+    }
+
+    #calendar {
+        max-width: 70vw;
+        max-height: 96vh;
     }
 }
 
 @media screen and (max-width: 760px) {
+
+    strong {
+        font-size: 14px;
+    }
+
     #bookings {
         height: 8vh;
         width: 85vw;
         padding: 0;
+        font-size: large;
     }
     
+    #update-booking {
+        align-self: center;
+        margin: 50px 115px;
+    }
+
+    #edit {
+        text-align: center;
+    }
+
+    #booking-form {
+        text-align: center;
+    }
+
+    #time-slot-list {
+        display: block;
+    }
+
     #calendar {
         font-size: large;
     }
@@ -509,12 +552,12 @@ h2 {
     }
 
     .edit {
-        height: 8.8vh;
+        height: 8.7vh;
         min-width: 15vw;
     }
 
     .delete {
-        height: 8.8vh;
+        height: 8.7vh;
         min-width: 15vw;
     }
 
@@ -541,10 +584,13 @@ h2 {
         padding: 0 29px;
     }
     p {
-        margin: 40px;
+        margin: 30px;
     }
     input {
         margin: 6px 30px;
+        font-size: medium;
+    }
+    #account {
         font-size: x-large;
     }
 }
@@ -559,6 +605,6 @@ h2 {
     }
 
     input{
-        font-size: x-large;
+        font-size: large;
     }
 }

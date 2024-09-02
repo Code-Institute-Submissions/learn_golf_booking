@@ -34,6 +34,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['8000-lewisclemen-learngolfbo-ikt0ujl1t4x.ws.codeinstitute-ide.net', 'learn-golf-booking-f01bc1c04312.herokuapp.com']
 
 
+SESSION_COOKIE_AGE = 1209600  
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False 
+SESSION_SAVE_EVERY_REQUEST = True
+
 # Application definition
 
 INSTALLED_APPS = [

@@ -17,14 +17,14 @@ document.addEventListener('DOMContentLoaded', function () {
             calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 validRange: {
-                    start: new Date().toISOString().split('T')[0]
+                    start: new Date().toISOString().split('T')[0] 
                 },
                 dateClick: function (info) {
                     console.log('Date clicked:', info.dateStr);
-                    document.getElementById('selected_date').value = info.dateStr;
-                    fetchAvailableSlots(info.dateStr);
-                    highlightSelectedDate(info.dateStr);
-                    timeSlotsSection.style.display = 'block';
+                    document.getElementById('selected_date').value = info.dateStr; 
+                    fetchAvailableSlots(info.dateStr); 
+                    highlightSelectedDate(info.dateStr); 
+                    timeSlotsSection.style.display = 'block'; 
                 }
             });
             calendar.render();
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     data.forEach(slot => {
                         const li = document.createElement('li');
                         li.textContent = slot;
-                        li.onclick = function () { selectTimeSlot(slot, date); };
+                        li.onclick = function () { selectTimeSlot(slot, date); }; 
                         timeSlotList.appendChild(li);
                     });
                 } else {
@@ -57,10 +57,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function selectTimeSlot(time, date) {
         console.log(`Selected time slot: ${time} on date: ${date}`);
-        document.getElementById('selected_time').value = time;
-        document.getElementById('selected_date').value = date;
-        document.getElementById('bookingForm').submit();
+        const selectedTimeInput = document.getElementById('selected_time');
+        const selectedDateInput = document.getElementById('selected_date');
+    
+        // Ensure time is formatted consistently with backend expectations
+        const formattedTime = time.includes(':') && time.length === 5 ? `${time}:00` : time; // Convert HH:MM to HH:MM:SS if needed
+    
+        selectedTimeInput.value = formattedTime; 
+        selectedDateInput.value = date;
+    
+        // Optionally delay form submission to ensure fields are set
+        setTimeout(() => {
+            document.getElementById('bookingForm').submit();
+        }, 100);  
     }
+    
 
     function highlightSelectedDate(dateStr) {
         const selectedDateElement = document.querySelector('.fc-daygrid-day[data-date="' + dateStr + '"]');
@@ -97,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Functions for managing the delete modal
 function openModal(bookingId) {
     document.getElementById('delete_booking_id').value = bookingId;
     document.getElementById('deleteForm').action = `/bookings/delete/${bookingId}/`;

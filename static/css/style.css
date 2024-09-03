@@ -130,7 +130,6 @@ h3 {
 
 p {
     align-self: flex-start;
-    margin-left: 100px;
     color: #f4f4f4;
 }
 
@@ -209,11 +208,11 @@ li {
 }
 
 #id_on_course_lesson {
-    height: 5vh;
+    height: 4vh;
 }
  
 #id_hire_clubs {
-    height: 5vh;
+    height: 4vh;
 }
 /* Header */
 
@@ -472,11 +471,13 @@ h2 {
 #id_hire_clubs {
     accent-color: olivedrab;
     width: 25vw;
+    max-height: 4vh;
 }
 
 #id_on_course_lesson {
     accent-color: olivedrab;
     width: 25vw;
+    max-height: 4vh;
 }
 
 .hidden-calendar {
@@ -510,6 +511,10 @@ h2 {
     #calendar {
         max-width: 70vw;
         max-height: 96vh;
+    }
+
+    #bookings {
+        height: 3vh;
     }
 }
 

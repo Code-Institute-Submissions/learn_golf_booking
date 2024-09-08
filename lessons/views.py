@@ -1,6 +1,6 @@
 from django.http import JsonResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from django.utils.dateparse import parse_date
+from django.utils.dateparse import parse_date, parse_time
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.dispatch import receiver
@@ -46,6 +46,12 @@ def book_lessons(request):
         selected_date = request.POST.get('selected_date')
         selected_time = request.POST.get('selected_time')
 
+        print(f"Received Selected Date: {selected_date}, Received Selected Time: {selected_time}")
+        if not selected_date:
+            form.add_error(None, 'Date field is required but missing.')
+        if not selected_time:
+            form.add_error(None, 'Time field is required but missing.')
+
         if form.is_valid() and selected_date and selected_time:
             selected_date_obj = parse_date(selected_date)
 
@@ -54,8 +60,8 @@ def book_lessons(request):
             else:
                 booking = form.save(commit=False)
                 booking.user = request.user
-                booking.date = selected_date
-                booking.time = selected_time if len(selected_time.split(':')) == 3 else f"{selected_time}:00"
+                booking.date = selected_date_obj
+                booking.time = selected_time
                 booking.hire_clubs = form.cleaned_data.get('hire_clubs', False)
                 booking.on_course_lesson = form.cleaned_data.get('on_course_lesson', False)
 
@@ -67,53 +73,50 @@ def book_lessons(request):
                     print("Validation error during save:", e)
                     form.add_error(None, e)
         else:
-            print("Form validation failed:", form.errors) 
+            print("Form validation failed:", form.errors)
 
     else:
         form = BookingForm()
 
     bookings = Booking.objects.filter(user=request.user)
-    print("Bookings retrieved:", bookings) 
+    print("Bookings retrieved:", bookings)
     return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings})
 
-    bookings = Booking.objects.filter(user=request.user)
-    print("Bookings retrieved:", bookings) 
-    return render(request, 'lessons/book_lessons.html', {'form': form, 'bookings': bookings})
+
 
 @login_required
 def success(request):
     return render(request, 'lessons/success.html')
 
 def home(request):
-    return render(request, 'lessons/book_lessons.html') 
+    return render(request, 'lessons/index.html')
 
-@login_required
 @login_required
 def booking_update(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
     if request.method == "POST":
-        form = BookingForm(request.POST, instance=booking)  
+        form = BookingForm(request.POST, instance=booking)
         selected_date = request.POST.get('selected_date')
         selected_time = request.POST.get('selected_time')
 
-        if form.is_valid() and selected_date and selected_time:
-            selected_date_obj = parse_date(selected_date)
+        selected_date_obj = parse_date(selected_date)
+        selected_time_obj = parse_time(selected_time) if selected_time else None
 
-            if selected_date_obj and selected_date_obj < timezone.now().date():
+        if form.is_valid() and selected_date_obj and selected_time_obj:
+            if selected_date_obj < timezone.now().date():
                 form.add_error(None, 'You cannot book a date in the past.')
             else:
                 booking.date = selected_date_obj
-                booking.time = selected_time
+                booking.time = selected_time_obj
                 booking.hire_clubs = form.cleaned_data.get('hire_clubs', False)
                 booking.on_course_lesson = form.cleaned_data.get('on_course_lesson', False)
-                
+
                 try:
                     booking.save()
                     print("Booking successfully updated.")
-                    return redirect('book_lessons') 
+                    return redirect('book_lessons')
                 except ValidationError as e:
-                    print("Validation error during update:", e)
                     form.add_error(None, e)
         else:
             print("Update failed due to form errors:", form.errors)
@@ -122,14 +125,19 @@ def booking_update(request, booking_id):
 
     return render(request, 'lessons/book_lessons.html', {'form': form, 'editing': True, 'booking_id': booking_id})
 
-
 @login_required
 def booking_delete(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
     if request.method == "POST":
         booking.delete()
-        print(f"Booking {booking_id} successfully deleted.") 
+        print(f"Booking {booking_id} successfully deleted.")
         return redirect('book_lessons')
 
     return redirect('book_lessons')
+
+def careers_view(request):
+    return render(request, 'lessons/careers.html')
+
+def gallery_view(request):
+    return render(request, 'lessons/gallery.html')

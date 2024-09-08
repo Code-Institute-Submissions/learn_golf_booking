@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Meta tags for search engines-->
+    <meta name="description" content="For people with an interest in learning or improving their golf ability">
+    <meta name="keywords" content="Golf, Golf Lessons, Golf Careers, Professional Golf, Scotland">
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-32x32.png">
+    <!--Stylesheet-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--Title-->
+    <title>Learn Golf</title>
+</head>
+
+<body>
+    <!--Header-->
+    <header>
+        <a href="{% url 'home' %}">
+            <h1 id="logo">Learn Golf <i class="fa-solid fa-golf-ball-tee"></i></h1>
+        </a>
+        <input type="checkbox" id="nav-toggle" name="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
+        <nav>
+            <ul id="menu">
+                <li><a href="{% url 'home' %}" class="active">Home</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'careers' %}">Golf Careers</a></li>
+                <li><a href="{% url 'book_lessons' %}">Golf Lessons</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--Main content-->
+    <main>
+        <section id="home">
+            <div id="hero"></div>
+            <div id="why">
+                <h2 class="benefits">Why should I learn golf? <i class="fa-solid fa-golf-ball-tee"></i></h2>
+                <p class="benefits">Golf is an immensely popular sport played all over the world and is a very social and enjoyable game.
+                    The most ideal way to get started is to take lessons and acquire basic skills before playing a
+                    course. As you improve, you should consider getting fitted for a set of clubs or if you are on a
+                    budget most golf shops sell second hand clubs and bags that people have traded in for a much more
+                    affordable price.</p>
+            </div>
+            <div id="reasons">
+                <div id="social_benefits">
+                    <h2 class="benefits">Social Benefits <i class="fa-solid fa-user-group"></i></h2>
+                    <ul>
+                        <li class="benefits-list">Golf is a great way to keep in touch with friends.</li>
+                        <br>
+                        <li class="benefits-list">Provides fantastic opportunities to meet new people.</li>
+                        <br>
+                        <li class="benefits-list">Golf clubs have club championships where members can compete to be named as the courses best
+                            player for that year and have your name permanently displayed next to the previous winners
+                            in the clubhouse for everyone to see.</li>
+                        <br>
+                        <li class="benefits-list">Can be played in different formats. If you are playing as a large group like a stag party
+                            you can compete against your friends in a texas scramble.</li>
+                        <br>
+                        <li class="benefits-list">Most golf courses have a clubhouse with a bar where functions are held such as Charity golf
+                            events, Sportmans dinners and Award Ceremonies.</li>
+                    </ul>
+                </div>
+                <br>
+                <div id="health_benefits">
+                    <h2 class="benefits">Health Benefits <i class="fa-solid fa-notes-medical"></i></h2>
+                    <p class="benefits">Golf is great for improving your health and especially for your heart. An average course is
+                        around 4 miles long and it takes around 3 to 4 hours to play 18 holes. If you play a course as
+                        little as three times per week, you would get an optimal amount of endurance exercise for your
+                        heart. If you carry your clubs you will benefit even more and burn more calories for each round
+                        you play. Golf is also a great mechanism to help you de-stress as you pass through a quiet, wide
+                        open and natural environment.</p>
+                    <br>
+                </div>
+            </div>
+            <div id="injuries">
+                <h2 class="benefits">Things to be aware of <i class="fa-solid fa-triangle-exclamation"></i></h2>
+                <p class="benefits">Golf is a relaxing sport and the overall risk of injury is low. However, injuries can still occur.
+                    The most common injuries are to the wrist/forearm, lower back and neck. Causes of these injuries
+                    include overuse, improper swing form, hitting the ground instead of the ball, and intensifying a
+                    previous injury. You can prevent injuries by properly warming up and stretching your back, shoulders
+                    and arms before playing, followed by a couple of swings using short irons. Lessons also help as good
+                    form will massively reduce risk of injury. <a href="{% url 'book_lessons' %}" style="color: darkgreen;">Find out more</a></p>
+            </div>
+        </section>
+    </main>
+    <!--Footer-->
+    <footer>
+        <ul id="socials">
+            <li>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our facebook page(opens in new tab)"><i class="fa-brands fa-facebook-f"></i></a>
+            </li>
+            <li>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our twitter page(opens in a new tab)"> <i class="fa-brands fa-x-twitter"></i></a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our YouTube channel(opens in a new tab)"><i class="fa-brands fa-youtube"></i></a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our Instagram page(opens in a new tab)"><i class="fa-brands fa-instagram"></i></a>
+            </li>
+        </ul>
+    </footer>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

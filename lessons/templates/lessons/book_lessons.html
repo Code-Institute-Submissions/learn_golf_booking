@@ -11,16 +11,16 @@
 
 <body id="booking-picture">
     <header>
-        <a href="{% url 'book_lessons' %}">
+        <a href="{% url 'home' %}">
             <h1 id="logo">Learn Golf <i class="fa-solid fa-golf-ball-tee"></i></h1>
         </a>
         <input type="checkbox" id="nav-toggle" name="nav-toggle">
         <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
         <nav>
             <ul id="menu">
-                <li>Home</li>
-                <li>Gallery</li>
-                <li>Golf Careers</li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'careers' %}">Golf Careers</a></li>
                 <li><a href="{% url 'book_lessons' %}" class="active">Golf Lessons</a></li>
                 <li><a href="{% url 'logout' %}">LOGOUT</a></li>
             </ul>
@@ -34,21 +34,21 @@
             <h2 id="book-lesson">{% if editing %}Edit Booking{% else %}Book a Lesson{% endif %}</h2>
             <div id="edit">
                 <form method="POST" id="bookingForm"
-                    action="{% if editing and booking_id %}{% url 'booking_update' booking_id %}{% else %}{% url 'book_lessons' %}{% endif %}">
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
-                    {{ form.as_p }}
-                    <input type="hidden" id="selected_date" name="selected_date" value="{{ form.date.value|default:'' }}">
-                    <input type="hidden" id="selected_time" name="selected_time" value="{{ form.time.value|default:'' }}">
-                    <div id="calendar" class="{% if not editing %}hidden-calendar{% endif %}"></div>
-                    <div id="time-slots" style="display: none;">
-                        <h2>Available Time Slots</h2>
-                        <ul id="time-slot-list"></ul>
-                    </div>
-                    {% if editing %}
-                        <button type="submit" id="update-booking-button">Update Booking</button>
-                    {% endif %}
-                </form>
+                action="{% if editing and booking_id %}{% url 'booking_update' booking_id %}{% else %}{% url 'book_lessons' %}{% endif %}">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.as_p }}
+                <input type="hidden" id="selected_date" name="selected_date" value="">
+                <input type="hidden" id="selected_time" name="selected_time" value="">
+                <div id="calendar" class="{% if not editing %}hidden-calendar{% endif %}"></div>
+                <div id="time-slots" style="display: none;">
+                    <h2>Available Time Slots</h2>
+                    <ul id="time-slot-list"></ul>
+                </div>
+                {% if editing %}
+                    <button type="submit" id="update-booking-button">Update Booking</button>
+                {% endif %}
+            </form>
             </div>
 
             {% if not editing %}

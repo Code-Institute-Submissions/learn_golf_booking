@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const emailInput = document.querySelector('input[name="email"]');
     const phoneInput = document.querySelector('input[name="phone"]');
     const calendarContainer = document.getElementById('calendar');
-    const timeSlotList = document.getElementById('time-slot-list'); 
-    const timeSlotsSection = document.getElementById('time-slots'); 
+    const timeSlotList = document.getElementById('time-slot-list');
+    const timeSlotsSection = document.getElementById('time-slots');
 
     timeSlotsSection.style.display = 'none';
 
@@ -57,10 +57,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function selectTimeSlot(time, date) {
         console.log(`Selected time slot: ${time} on date: ${date}`);
-        document.getElementById('selected_time').value = time;
-        document.getElementById('selected_date').value = date;
-        document.getElementById('bookingForm').submit();
+        const selectedTimeInput = document.getElementById('selected_time');
+        const selectedDateInput = document.getElementById('selected_date');
+    
+        selectedTimeInput.value = time;
+        selectedDateInput.value = date;
+    
+        console.log('Selected Date:', selectedDateInput.value);
+        console.log('Selected Time:', selectedTimeInput.value);
+    
+        if (!selectedDateInput.value || !selectedTimeInput.value) {
+            console.error('Date or Time not set correctly before submission');
+            alert('Date or Time is not set correctly.');
+            return; 
+        }
+
+        setTimeout(() => {
+            document.getElementById('bookingForm').submit();
+        }, 100);
     }
+    
+    
 
     function highlightSelectedDate(dateStr) {
         const selectedDateElement = document.querySelector('.fc-daygrid-day[data-date="' + dateStr + '"]');
@@ -97,18 +114,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Functions for managing the delete modal
 function openModal(bookingId) {
     document.getElementById('delete_booking_id').value = bookingId;
     document.getElementById('deleteForm').action = `/bookings/delete/${bookingId}/`;
-    document.getElementById('deleteModal').style.display = 'block'; 
+    document.getElementById('deleteModal').style.display = 'block';
 }
 
 function closeModal() {
-    document.getElementById('deleteModal').style.display = 'none'; 
+    document.getElementById('deleteModal').style.display = 'none';
 }
 
 function submitDeleteForm() {
-    document.getElementById('deleteForm').submit(); 
+    document.getElementById('deleteForm').submit();
 }
 
 window.onclick = function (event) {

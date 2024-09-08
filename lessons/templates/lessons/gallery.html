@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Meta tags for search engines-->
+    <meta name="description" content="For people with an interest in learning or improving their golf ability">
+    <meta name="keywords" content="Golf, Golf Lessons, Golf Careers, Professional Golf, Scotland">
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-32x32.png">
+    <!--Stylesheet-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--Title-->
+    <title>Learn Golf</title>
+</head>
+
+<body>
+    <!--Header-->
+    <header>
+        <a href="{% url 'home' %}">
+            <h1 id="logo">Learn Golf <i class="fa-solid fa-golf-ball-tee"></i></h1>
+        </a>
+        <input type="checkbox" id="nav-toggle" name="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label"><i class="fa-solid fa-bars"></i></label>
+        <nav>
+            <ul id="menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'gallery' %}" class="active">Gallery</a></li>
+                <li><a href="{% url 'careers' %}">Golf Careers</a></li>
+                <li><a href="{% url 'book_lessons' %}">Golf Lessons</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--Main content-->
+    <main id="gallery-page">
+        <section id="gallery">
+            <div class="column">
+                <img src="{% static 'images/gallery1.jpg' %}" alt="golf ball on green">
+                <img src="{% static 'images/gallery2.jpg' %}" alt="Chris Maclean on green">
+                <img src="{% static 'images/gallery3.jpg' %}" alt="Chris Maclean bunker shot">
+                <img src="{% static 'images/gallery4.jpg' %}" alt="Chris Maclean chip shot">
+            </div>
+            <div class="column">
+                <img src="{% static 'images/gallery6.jpg' %}" alt="Chris Maclean putting">
+                <img src="{% static 'images/gallery11.jpg' %}" alt="Golf ball on tee">
+                <img src="{% static 'images/gallery8.JPG' %}" alt="Chris Maclean chipping onto green">
+                <img src="{% static 'images/gallery9.jpg' %}" alt="Chris Maclean Drive">
+            </div>
+            <div class="column">
+                <img src="{% static 'images/gallery10.jpg' %}" alt="Scenic golf shot">
+                <img src="{% static 'images/gallery5.JPG' %}" alt="Chris Maclean">
+            </div>
+            <div class="column">
+                <img src="{% static 'images/gallery12.jpg' %}" alt="Teeing up">
+                <img src="{% static 'images/gallery13.jpg' %}" alt="Scenic picture of Bunkers">
+                <img src="{% static 'images/gallery14.jpg' %}" alt="Scenic Picture of fairway">
+            </div>
+        </section>
+    </main>
+    <!--Footer-->
+    <footer>
+        <ul id="socials">
+            <li>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our facebook page(opens in new tab)"><i class="fa-brands fa-facebook-f"></i></a>
+            </li>
+            <li>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our twitter page(opens in a new tab)"> <i class="fa-brands fa-x-twitter"></i></a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our YouTube channel(opens in a new tab)"><i class="fa-brands fa-youtube"></i></a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                    aria-label="Visit our Instagram page(opens in a new tab)"><i class="fa-brands fa-instagram"></i></a>
+            </li>
+        </ul>
+    </footer>
+    <script src="https://kit.fontawesome.com/856dbb2edf.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

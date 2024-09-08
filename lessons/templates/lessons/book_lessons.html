@@ -38,8 +38,8 @@
                 {% csrf_token %}
                 {{ form.non_field_errors }}
                 {{ form.as_p }}
-                <input type="hidden" id="selected_date" name="selected_date" value="">
-                <input type="hidden" id="selected_time" name="selected_time" value="">
+                <input type="hidden" id="date" name="date" value="">
+                <input type="hidden" id="time" name="time" value="">
                 <div id="calendar" class="{% if not editing %}hidden-calendar{% endif %}"></div>
                 <div id="time-slots" style="display: none;">
                     <h2>Available Time Slots</h2>

@@ -62,7 +62,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    min-width: 15vw;
+    min-width: 10vw;
     align-self: center;
     margin: 5cqmax 0;
 }
@@ -113,6 +113,7 @@ a {
     text-align: center;
     margin-left: 0;
     padding-top: 100px;
+    height: 57vh;
 }
 
 h3 {
@@ -238,11 +239,12 @@ header a {
 nav {
     position: absolute;
     background-color: olivedrab;
-    left: 74%;
+    left: 0;
     padding: 0 1rem;
     box-shadow: 0 2px 2px #3a3a3a;
     display: none;
-    top: 9%;
+    top: 11%;
+    width: 100%;
 }
 ul {
     margin: 0;
@@ -392,8 +394,8 @@ h2 {
     border: 1px solid white;
     width: 60vw;
     padding-top: 0;
-    margin: 0;
-    min-height: 9vh;
+    margin: 50px 0;
+    max-height: 9vh;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -407,7 +409,7 @@ h2 {
 }
 
 #update-booking-button {
-    height: 8vh;
+    height: 5vh;
 }
 
 #no-bookings {
@@ -419,7 +421,7 @@ h2 {
 /* Booking Calender */
 
 #calendar {
-    width: 80vw; 
+    width: 78vw; 
     margin: 0 auto; 
     overflow: hidden; 
     padding: 0;
@@ -486,7 +488,11 @@ h2 {
 
 .benefits {
     color: olivedrab;
+    text-align: left;
+    margin: 0;
+    font-size: large;
 }
+
 
 .benefits-list {
     list-style-type: circle;
@@ -559,7 +565,6 @@ h2 {
     flex-wrap: wrap;
     padding: 1px;
     background-color: olivedrab;
-    height: 100vh;
 }
 #gallery-page {
     background-color: olivedrab;
@@ -578,6 +583,14 @@ h2 {
         background-color: olivedrab;
     }
 
+    #gallery {
+        min-height: 150vh;
+    }
+
+    #careers {
+        font-size: x-large;
+    }
+
     #careers-hero {
         height: 1200px;
     }
@@ -590,6 +603,10 @@ h2 {
         text-align: center;
         width: 55%;
         margin-left: 15px;
+    }
+
+    .benefits {
+        font-size: xx-large;
     }
 
     #injuries {
@@ -630,7 +647,7 @@ h2 {
     }
 
     #bookings {
-        height: 3vh;
+        height: 5vh;
     }
 
     #reasons {
@@ -680,12 +697,12 @@ h2 {
     }
 
     .edit {
-        height: 8.7vh;
+        height: 7.7vh;
         min-width: 15vw;
     }
 
     .delete {
-        height: 8.7vh;
+        height: 7.7vh;
         min-width: 15vw;
     }
 
@@ -694,7 +711,7 @@ h2 {
     }
     #time-slots {
         text-align: center;
-        padding: 0 40px;
+        padding: 0 60px;
     }
     #booking-picture {
         background-position: 83%;
@@ -734,5 +751,10 @@ h2 {
 
     input{
         font-size: large;
+    }
+    .column {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
     }
 }

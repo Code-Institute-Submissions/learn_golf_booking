@@ -3,4 +3,5 @@ from .models import Booking
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date', 'time')
+    list_display = ('name', 'email', 'phone', 'date', 'time', 'hire_clubs', 'on_course_lesson')
+    search_fields = ('name', 'email', 'phone')

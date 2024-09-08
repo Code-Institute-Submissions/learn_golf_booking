@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const nameInput = document.querySelector('input[name="name"]');
     const emailInput = document.querySelector('input[name="email"]');
     const phoneInput = document.querySelector('input[name="phone"]');
-    const bookingForm = document.getElementById('bookingForm');
+    const calendarContainer = document.getElementById('calendar');
+    const bookingForm = document.getElementById('bookingForm'); 
     const isEditing = window.location.href.includes('edit');
 
     function initializeCalendar() {
@@ -30,12 +31,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function checkInputs() {
-        const allFilled = nameInput.value.trim() && emailInput.value.trim() && phoneInput.value.trim();
+        const allFilled = nameInput.value.trim() !== '' && emailInput.value.trim() !== '' && phoneInput.value.trim() !== '';
         if (allFilled) {
             calendarContainer.style.display = 'block';
             initializeCalendar();
         } else {
-            hideCalendarAndSlots();
+            calendarContainer.style.display = 'none'; 
+            timeSlotsSection.style.display = 'none'; 
         }
     }
 

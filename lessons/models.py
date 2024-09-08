@@ -9,6 +9,8 @@ class Booking(models.Model):
     phone = models.CharField(max_length=15)
     date = models.DateField()
     time = models.TimeField()
+    hire_clubs = models.BooleanField(default=False)
+    on_course_lesson = models.BooleanField(default=False)
 
     def clean(self):
          if Booking.objects.filter(date=self.date, time=self.time).exclude(id=self.id).exists():

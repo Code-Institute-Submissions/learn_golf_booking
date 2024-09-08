@@ -89,8 +89,8 @@ def booking_update(request, booking_id):
 
         print(f"Submitted Date: {selected_date}, Submitted Time: {selected_time}")
 
-        selected_date_obj = parse_date(selected_date)
-        selected_time_obj = parse_time(selected_time)
+        selected_date_obj = parse_date(selected_date) if selected_date else booking.date
+        selected_time_obj = parse_time(selected_time) if selected_time else booking.time
 
         if selected_time and (selected_time, selected_time) not in TIME_CHOICES:
             TIME_CHOICES.append((selected_time, selected_time))

@@ -251,7 +251,7 @@ nav {
     padding: 0 1rem;
     box-shadow: 0 2px 2px #3a3a3a;
     display: none;
-    top: 11%;
+    top: 7%;
     width: 100%;
 }
 ul {
@@ -670,6 +670,10 @@ h2 {
 
     strong {
         font-size: 14px;
+    }
+
+    #nav {
+        top: 11%;
     }
 
     #bookings {

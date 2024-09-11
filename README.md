@@ -127,7 +127,28 @@ The logo was taken from a simple font awesome icon. [Font Awesome](https://fonta
 
 The 'kanit' font was used as the primary font with sans-serif set as a back up.
 
-### wireframes
+### Wireframes
+
+<details>
+<summary> Register Page
+</summary>
+
+![Register Page](static/images/readme_images/register_wireframe.png)
+</details>
+
+<details>
+<summary> Login Page
+</summary>
+
+![Login Page](static/images/readme_images/login_wireframe.png)
+</details>
+
+<details>
+<summary> Booking Page
+</summary>
+
+![Booking Page](static/images/readme_images/booking_wireframe.png)
+</details>
 
 ### Data Models
 

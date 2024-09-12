@@ -70,91 +70,34 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 <summary> Home Page
 </summary>
 
-![Home Page](documentation/validation/home-html-validation.PNG)
-</details>
-
-<details>
-<summary> Contact Page
-</summary>
-
-![Contact Page](documentation/validation/contact-html-validation.PNG)
+![Home Page](static/images/test_images/index.png)
 </details>
 
 <details>
 <summary> Sign Up Page
 </summary>
 
-![Sign Up Page](documentation/validation/sign-up-html-validation.PNG)
+![Sign Up Page](static/images/test_images/register.png)
 </details>
 
 <details>
 <summary> Login Page
 </summary>
 
-![Login Page](documentation/validation/login-html-validation.PNG)
+![Login Page](static/images/test_images/signin.png)
 </details>
 
-<details>
-<summary> Logout Page
-</summary>
-
-![Logout Page](documentation/validation/logout-html-validation.PNG)
-</details>
-
-<details>
-<summary> Browse Cabins Page
-</summary>
-
-![Browse Cabins Page](documentation/validation/cabin-booking-html-validation.PNG)
-</details>
-
-<details>
 <summary> Make a Booking Page
 </summary>
 
-![Make a Booking Page](documentation/validation/make-booking-html-validation.PNG)
+![Make a Booking Page](static/images/test_images/booking.png)
 </details>
 
 <details>
 <summary> Booking Success Page
 </summary>
 
-![Booking Success Page](documentation/validation/booking-successful-html-validation.PNG)
-</details>
-
-<details>
-<summary> Booking Overview Page
-</summary>
-
-![Booking Overview Page](documentation/validation/booking-overview-html-validation.PNG)
-</details>
-
-<details>
-<summary> Edit Booking Page
-</summary>
-
-![Edit Booking Page](documentation/validation/edit-booking-html-validation.PNG)
-</details>
-
-<details>
-<summary> Delete Booking Page
-</summary>
-
-![Delete Booking Page](documentation/validation/delete-booking-html-validation.PNG)
-</details>
-
-<details>
-<summary> 404 Error Page
-</summary>
-
-![404 Error Page](documentation/validation/404-html-validation.PNG)
-</details>
-
-<details>
-<summary> 500 Error Page
-</summary>
-
-![500 Error Page](documentation/validation/500-page-html-validation.PNG)
+![Booking Success Page](static/images/test_images/success.png)
 </details>
 
 ### CSS Validation
@@ -163,7 +106,7 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 <summary> Custom CSS (style.css)
 </summary>
 
-![Custom CSS (style.css)](documentation/validation/css-validation.PNG)
+![Custom CSS (style.css)](static/images/test_images/css.png)
 </details>
 
 ### JavaScript Validation
@@ -172,189 +115,137 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 <summary> Custom JS (script.js)
 </summary>
 
-![Custom JS (script.js)](documentation/validation/js-validation.PNG)
-</details>
-
-<details>
-<summary> Edit Booking Inline Script
-</summary>
-
-![Edit Booking Inline Script](documentation/validation/edit-booking-js-validation.PNG)
-</details>
-
-<details>
-<summary> Make a Booking Inline Script
-</summary>
-
-![Make a Booking Inline Script](documentation/validation/my-booking-js-validation.PNG)
+![Custom JS (script.js)](static/images/test_images/script.png)
 </details>
 
 ### Python
 
-#### cabin_bookings app
-
-<details>
-<summary> admin.py
-</summary>
-
-![admin.py](documentation/validation/admin-python-validation.PNG)
-</details>
+#### Accounts
 
 <details>
 <summary> forms.py
 </summary>
 
-![forms.py](documentation/validation/forms-python-validation.PNG)
-</details>
-
-<details>
-<summary> models.py
-</summary>
-
-![models.py](documentation/validation/models-python-validation.PNG)
+![forms.py](static/images/test_images/accounts_forms.png)
 </details>
 
 <details>
 <summary> views.py
 </summary>
 
-![views.py](documentation/validation/views-python-validation.PNG)
+![views.py](static/images/test_images/accounts_views.png)
 </details>
 
 <details>
 <summary> urls.py
 </summary>
 
-![urls.py](documentation/validation/urls-python-validation.PNG)
+![urls.py](static/images/test_images/accounts_urls.png)
 </details>
 
-#### woodland_retreat app
+#### book_lessons app
 
 <details>
 <summary> settings.py
 </summary>
 
-![settings.py](documentation/validation/settings-python-validation.PNG)
+![settings.py](static/images/test_images/lessons_settings.png)
 </details>
 
 <details>
 <summary> urls.py
 </summary>
 
-![urls.py](documentation/validation/urls-woodland-python-validation.PNG)
+![urls.py](static/images/test_images/lessons_urls.png)
 </details>
 
+<details>
+<summary> admin.py
+</summary>
+
+![admin.py](static/images/test_images/lessons_admin.png)
+</details>
+
+<details>
+<summary> forms.py
+</summary>
+
+![forms.py](static/images/test_images/lessons_forms.png)
+</details>
+
+<details>
+<summary> models.py
+</summary>
+
+![models.py](static/images/test_images/lessons_models.png)
+</details>
+
+<details>
+<summary> views.py
+</summary>
+
+![views.py](static/images/test_images/lessons_views.png)
+</details>
 ## Lighthouse Report
 
 <details>
 <summary> Home Page
 </summary>
 
-![Home Page](documentation/lighthouse_report/home-lighthouse.PNG)
+![Home Page](static/images/test_images/lighthouse_home.png)
 </details>
 
 <details>
-<summary> Home Page Logged in
+<summary> Careers Page
 </summary>
 
-![Home Page Logged in](documentation/lighthouse_report/home-logged-lighthouse.PNG)
+![Careers](static/images/test_images/lighthouse_careers.png)
 </details>
 
 <details>
-<summary> Contact Page
+<summary> Gallery Page
 </summary>
 
-![Contact Page](documentation/lighthouse_report/contact-lighthouse.PNG)
+![Careers](static/images/test_images/lighthouse_gallery.png)
 </details>
 
 <details>
 <summary> Sign Up Page
 </summary>
 
-![Sign Up Page](documentation/lighthouse_report/sign-up-lighthouse.PNG)
+![Sign Up Page](static/images/test_images/register.png)
 </details>
 
 <details>
 <summary> Login Page
 </summary>
 
-![Login Page](documentation/lighthouse_report/login-lighthouse.PNG)
-</details>
-
-<details>
-<summary> Logout Page
-</summary>
-
-![Logout Page](documentation/lighthouse_report/logout-lighthouse.PNG)
-</details>
-
-<details>
-<summary> Browse Cabins Page
-</summary>
-
-![Browse Cabins Page](documentation/lighthouse_report/browse-cabins-lighthouse.PNG)
+![Login Page](static/images/test_images/lighthouse_login.png)
 </details>
 
 <details>
 <summary> Make a Booking Page
 </summary>
 
-![Make a Booking Page](documentation/lighthouse_report/make-a-booking-lighthouse.PNG)
+![Make a Booking Page](static/images/test_images/lighthouse_bookings.png)
 </details>
 
 <details>
 <summary> Booking Success Page
 </summary>
 
-![Booking Success Page](documentation/lighthouse_report/booking-succesful-lighthouse.PNG)
-</details>
-
-<details>
-<summary> Booking Overview Page
-</summary>
-
-![Booking Overview Page](documentation/lighthouse_report/booking-overview-lighthouse.PNG)
-</details>
-
-<details>
-<summary> Edit Booking Page
-</summary>
-
-![Edit Booking Page](documentation/lighthouse_report/edit-booking-lighthouse.PNG)
-</details>
-
-<details>
-<summary> Delete Booking Page
-</summary>
-
-![Delete Booking Page](documentation/lighthouse_report/delete-booking-lighthouse.PNG)
+![Booking Success Page](static/images/test_images/lighthouse_success.png)
 </details>
 
 ## Bugs
 
 ### Resolved Bugs
 
-#### Refused to apply style from Woodland Whispers site link because its MIME type(text/html).
+#### Footer Not sticking to the bottom of the login page
 
-* When I have deployed the site to Heroku for the first time, my custom CSS was not working, it was due to Cloudinary not providing my static files, I had to change my DEBUG = True to DEBUG = development, development = os.environ.get('DEVELOPMENT'), which is connected to my Gitpod variable DEVELOPMENT  which is set to True, meaning deployed site is set to False and production is set to True, I had to delete my static files from Cloudinary and force a manual deploy again and it picked up the files and everything works since then.
+* When the site was deployed to heroku I noticed during testing that the footer wasnt styled correctly in the login page, I adjusted the padding and this resolved the issue.
 
-#### Flatpick not reloading
-
- * Page is reloaded by ensuring the bookedDates array is correctly populated with booked dates before initializing the flatpickr date picker. This is achieved by checking if the booked_dates_json variable is truthy, parsing it as JSON, and using the resulting array for flatpickr's disable option. The DOMContentLoaded event listener guarantees proper timing for the flatpickr initialization.
-
-#### Specified Value 'None'
-
-* Fixed a bug in edit_booking template, if user didin't book amenities when user would go to edit his booking, in console log there was a message statin 'The specified value 'None' cannot be parsed or is out of range, that is because if amenities was left empty it would have value None instead of intended 0 value. That was fixed by adding a default_if_none:'0' to make sure if amenities were left empty the form isself would apply 0 value to them and removing the issue.
-
-### Unresolved Bug
-
-#### Flatpick activates after booking is made on some phone devices
-
-* It's possible that the bug is related to the mobile environment or specific device configurations
-
-* On certain mobile devices, the Flatpickr calendar component doesn't activate until a cabin has been booked by any user yet. Prior to any bookings, the calendar displays a standard design instead of the expected Flatpickr layout. However, rest assured, this issue has no adverse impact on the user experience. The discrepancy in appearance is merely temporary and limited to the initial state until a booking is made. Once a cabin is reserved, Flatpickr seamlessly takes over, providing the intended functionality.
-
-* It means if the cabin hasn't been booked by anyone this might make some phones use a standard calendar until the first booking is made, after that it works as expected and has no negative impact on the user experience.
+### Unresolved Bugs
 
 ## Features Testing
  

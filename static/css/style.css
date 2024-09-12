@@ -290,11 +290,13 @@ ul {
     justify-content: space-evenly;
     list-style-type: none;
 }
+
 #socials i {
     font-size: 160%;
     padding: 5%;
     color:#ffffff;
 }
+
 footer {
     background-color: olivedrab;
 }

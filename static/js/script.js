@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const calendarEl = document.getElementById('calendar');
     const timeSlotList = document.getElementById('time-slot-list');
     const timeSlotsSection = document.getElementById('time-slots');
-    const selectedDateInput = document.getElementById('date');
-    const selectedTimeInput = document.getElementById('time');
     const nameInput = document.querySelector('input[name="name"]');
     const emailInput = document.querySelector('input[name="email"]');
     const phoneInput = document.querySelector('input[name="phone"]');
@@ -21,17 +19,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: new Date().toISOString().split('T')[0]
             },
             dateClick: function (info) {
-                selectedDateInput.value = info.dateStr;
-                fetchAvailableSlots(info.dateStr);
-                highlightSelectedDate(info.dateStr);
-                timeSlotsSection.style.display = 'block';
+                const selectedDateInput = document.getElementById('date');
+
+                try {
+                    if (selectedDateInput) {
+                        selectedDateInput.value = info.dateStr;
+                        fetchAvailableSlots(info.dateStr);
+                        highlightSelectedDate(info.dateStr);
+                        timeSlotsSection.style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Error setting date input value:', error);
+                }
             }
         });
         calendar.render();
     }
 
     function checkInputs() {
-        const allFilled = nameInput.value.trim() !== '' && emailInput.value.trim() !== '' && phoneInput.value.trim() !== '';
+        const allFilled = nameInput?.value.trim() !== '' && emailInput?.value.trim() !== '' && phoneInput?.value.trim() !== '';
         if (allFilled) {
             calendarContainer.style.display = 'block';
             initializeCalendar();
@@ -46,14 +52,14 @@ document.addEventListener('DOMContentLoaded', function () {
         timeSlotsSection.style.display = 'none';
     }
 
-    nameInput.addEventListener('input', checkInputs);
-    emailInput.addEventListener('input', checkInputs);
-    phoneInput.addEventListener('input', checkInputs);
+    if (nameInput) nameInput.addEventListener('input', checkInputs);
+    if (emailInput) emailInput.addEventListener('input', checkInputs);
+    if (phoneInput) phoneInput.addEventListener('input', checkInputs);
 
-    // editing mode
     if (isEditing) {
         initializeCalendar();
-        if (selectedDateInput.value) {
+        const selectedDateInput = document.getElementById('date');
+        if (selectedDateInput?.value) {
             highlightSelectedDate(selectedDateInput.value);
             fetchAvailableSlots(selectedDateInput.value);
         }
@@ -85,11 +91,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function selectTimeSlot(time, date) {
-        selectedTimeInput.value = time;
-        selectedDateInput.value = date;
-        setTimeout(() => {
-            bookingForm.submit();
-        }, 100);
+        const selectedTimeInput = document.getElementById('time');
+        const selectedDateInput = document.getElementById('date');
+
+        if (selectedTimeInput && selectedDateInput) {
+            selectedTimeInput.value = time;
+            selectedDateInput.value = date;
+            setTimeout(() => {
+                if (bookingForm) bookingForm.submit();
+            }, 100);
+        } else {
+            console.error('Selected time or date input elements not found.');
+        }
     }
 
     function highlightSelectedDate(dateStr) {
@@ -103,21 +116,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Delete Booking Modal
 function openModal(bookingId) {
-    document.getElementById('delete_booking_id').value = bookingId;
-    document.getElementById('deleteForm').action = `/bookings/delete/${bookingId}/`;
-    document.getElementById('deleteModal').style.display = 'block';
+    const deleteBookingId = document.getElementById('delete_booking_id');
+    const deleteForm = document.getElementById('deleteForm');
+    const deleteModal = document.getElementById('deleteModal');
+
+    if (deleteBookingId && deleteForm && deleteModal) {
+        deleteBookingId.value = bookingId;
+        deleteForm.action = `/bookings/delete/${bookingId}/`;
+        deleteModal.style.display = 'block';
+    } else {
+        console.error('Delete modal elements not found.');
+    }
 }
 
 function closeModal() {
-    document.getElementById('deleteModal').style.display = 'none';
+    const deleteModal = document.getElementById('deleteModal');
+    if (deleteModal) {
+        deleteModal.style.display = 'none';
+    } else {
+        console.error('Delete modal element not found.');
+    }
 }
 
 function submitDeleteForm() {
-    document.getElementById('deleteForm').submit();
+    const deleteForm = document.getElementById('deleteForm');
+    if (deleteForm) {
+        deleteForm.submit();
+    } else {
+        console.error('Delete form element not found.');
+    }
 }
 
 window.onclick = function (event) {
-    if (event.target == document.getElementById('deleteModal')) {
+    const deleteModal = document.getElementById('deleteModal');
+    if (event.target === deleteModal) {
         closeModal();
     }
 };

@@ -1,7 +1,9 @@
 from django import forms
 from .models import Booking
 
+
 TIME_CHOICES = [(f"{hour:02d}:00", f"{hour:02d}:00") for hour in range(9, 18)]
+
 
 class BookingForm(forms.ModelForm):
     hire_clubs = forms.BooleanField(required=False, label="Do you need to hire clubs?")

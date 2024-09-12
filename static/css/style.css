@@ -63,8 +63,7 @@ button {
     cursor: pointer;
     font-size: 16px;
     min-width: 10vw;
-    align-self: center;
-    margin: 5cqmax 0;
+    margin: 50px 0;
 }
 
 button:hover {
@@ -389,6 +388,7 @@ h2 {
     min-height: 25vh;
     margin: 0;
     padding-top: 20px;
+    display: flex;
 }
 
 #bookings-heading {

@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import SignUpForm, LoginForm, CustomUserCreationForm
 
+
 def signin(request):
     if request.method == 'POST':
         form = LoginForm(data=request.POST)
@@ -14,6 +15,7 @@ def signin(request):
         form = LoginForm()
     return render(request, 'accounts/signin.html', {'form': form})
 
+
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -23,6 +25,7 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
+
 
 def signout(request):
     logout(request)
